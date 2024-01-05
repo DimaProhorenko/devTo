@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .mobile-menu-top {
+    clip-path: polygon(0 0, 0 83%, 100% 0);
+  }
+  .mobile-menu-bot {
+    clip-path: polygon(100% 100%, 0 100%, 100% 20%);
+  }
+}
