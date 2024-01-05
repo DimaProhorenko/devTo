@@ -5,9 +5,9 @@ export default {
     extend: {
       container: {
         center: true,
-        padding: "2rem",
+        padding: "1rem",
       },
-      textColor: {
+      colors: {
         primary: {
           50: "#ebf3fe",
           100: "#c4dafc",

@@ -22,7 +22,9 @@ Header.Content.propTypes = {
 };
 
 Header.Cell = function HeaderCell({ children, className = "" }) {
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={`flex items-center gap-4 ${className}`}>{children}</div>
+  );
 };
 
 Header.Cell.propTypes = {
