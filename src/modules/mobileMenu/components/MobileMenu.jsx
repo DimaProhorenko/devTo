@@ -8,6 +8,7 @@ function MobileMenu({ children, innerRef }) {
       initial={{ y: "-100%" }}
       animate={{ y: 0 }}
       exit={{ y: "-100%" }}
+      transition={{ duration: 0.3, ease: easeIn }}
       ref={innerRef}
       className="fixed left-0 top-0 h-full w-full -translate-y-full  bg-white"
     >

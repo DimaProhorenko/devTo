@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import HeaderMobile from "src/modules/header/components/HeaderMobile";
@@ -17,7 +18,9 @@ function AppLayout() {
   return (
     <>
       <HeaderMobile onOpenMenu={handleOpenMenu} />
-      {isMenuOpen && <MobileMenuContainer onCloseMenu={handleCloseMenu} />}
+      <AnimatePresence>
+        {isMenuOpen && <MobileMenuContainer onCloseMenu={handleCloseMenu} />}
+      </AnimatePresence>
       <main>
         <Outlet />
       </main>
