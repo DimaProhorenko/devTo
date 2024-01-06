@@ -1,20 +1,34 @@
 import PropTypes from "prop-types";
+import { motion, easeIn } from "framer-motion";
 import { IconLink } from "src/modules/common/components";
 
 function MobileMenu({ children, innerRef }) {
   return (
-    <div
+    <motion.div
+      initial={{ y: "-100%" }}
+      animate={{ y: 0 }}
+      exit={{ y: "-100%" }}
       ref={innerRef}
-      className="fixed left-0 top-0 flex h-full w-full items-center justify-center"
+      className="fixed left-0 top-0 h-full w-full -translate-y-full  bg-white"
     >
-      {children}
-    </div>
+      <div className="container h-full">{children}</div>
+    </motion.div>
   );
 }
 
 MobileMenu.propTypes = {
   children: PropTypes.any.isRequired,
   innerRef: PropTypes.any,
+};
+
+MobileMenu.Top = function MobileMenuTop({ children }) {
+  return (
+    <div className="flex items-center justify-between py-2">{children}</div>
+  );
+};
+
+MobileMenu.Top.propTypes = {
+  children: PropTypes.any.isRequired,
 };
 
 MobileMenu.TopPane = function MobileMenuTopPane({ innerRef }) {
@@ -45,7 +59,7 @@ MobileMenu.BotPane.propTypes = {
 
 MobileMenu.Nav = function MobileMenuNav({ children }) {
   return (
-    <nav className="px-4 text-center">
+    <nav className="flex h-full items-center justify-center px-4">
       <ul className="space-y-4">{children}</ul>
     </nav>
   );
@@ -68,7 +82,7 @@ MobileMenu.Link = function MobileMenuLink({ children, to, iconPath }) {
     <IconLink
       iconPath={iconPath}
       to={to}
-      className="relative py-2 text-center text-xl font-medium before:absolute before:bottom-0 before:left-0 before:block before:h-[2px] before:w-full before:origin-left before:scale-x-0 before:bg-primary-500 before:transition-transform hover:text-primary-500 hover:before:scale-x-100"
+      className="relative py-2 text-center text-3xl font-medium before:absolute before:bottom-0 before:left-0 before:block before:h-[2px] before:w-full before:origin-left before:scale-x-0 before:bg-primary-500 before:transition-transform hover:text-primary-500 hover:before:scale-x-100"
     >
       {children}
     </IconLink>

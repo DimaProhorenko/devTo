@@ -1,7 +1,7 @@
 import burgerIcon from "src/assets/icons/burger.svg";
-function Burger() {
+function Burger({ ...restProps }) {
   return (
-    <button className="flex h-7 w-7 items-center justify-center">
+    <button {...restProps} className="flex h-7 w-7 items-center justify-center">
       <img src={burgerIcon} alt="Open Menu" />
     </button>
   );

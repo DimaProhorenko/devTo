@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 function IconLink({ children, iconPath, to, className = "" }) {
   return (
-    <Link to={to} className={`flex items-center gap-2 ${className}`}>
-      <img src={iconPath} className="w-7" />
+    <Link to={to} className={`flex items-center gap-3 ${className}`}>
+      <img src={iconPath} className="w-10" />
       {children}
     </Link>
   );

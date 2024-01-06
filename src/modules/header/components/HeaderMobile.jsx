@@ -1,14 +1,15 @@
+import PropTypes from "prop-types";
 import { Button, Logo, SearchIcon } from "src/modules/common/components";
 import Burger from "./Burger";
 import Header from "./Header";
 import { LOGIN } from "src/constants/routes";
 
-function HeaderMobile() {
+function HeaderMobile({ onOpenMenu }) {
   return (
     <Header>
       <Header.Content>
         <Header.Cell>
-          <Burger />
+          <Burger onClick={onOpenMenu} />
           <Logo />
         </Header.Cell>
         <Header.Cell>
@@ -19,4 +20,8 @@ function HeaderMobile() {
     </Header>
   );
 }
+
+HeaderMobile.propTypes = {
+  onOpenMenu: PropTypes.func.isRequired,
+};
 export default HeaderMobile;
