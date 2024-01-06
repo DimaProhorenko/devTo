@@ -5,7 +5,7 @@ import HeaderMobile from "src/modules/header/components/HeaderMobile";
 import MobileMenuContainer from "src/modules/mobileMenu/components/MobileMenuContainer";
 
 function AppLayout() {
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleOpenMenu = () => {
     setIsMenuOpen(true);
