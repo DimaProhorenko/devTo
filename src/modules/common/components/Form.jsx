@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Formik, Form as FormikForm, useField } from "formik";
 import PropTypes from "prop-types";
 import { Button } from ".";
+import React from "react";
 
 function Form({ children, initialsValues, validationSchema, onSubmit }) {
   return (
@@ -9,7 +11,19 @@ function Form({ children, initialsValues, validationSchema, onSubmit }) {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      <FormikForm className="space-y-6">{children}</FormikForm>
+      {({ isValid, dirty }) => {
+        return (
+          <FormikForm className="space-y-6">
+            {React.Children.map(children, (child) => {
+              if (child.type === Form.Submit) {
+                return React.cloneElement(child, { isValid, dirty });
+              }
+              return child;
+            })}
+          </FormikForm>
+        );
+      }}
+      {/* <FormikForm className="space-y-6">{children}</FormikForm> */}
     </Formik>
   );
 }
@@ -71,9 +85,9 @@ Form.Field.propTypes = {
   id: PropTypes.string,
 };
 
-Form.Submit = function FormSubmit({ children }) {
+Form.Submit = function FormSubmit({ children, isValid, dirty }) {
   return (
-    <Button type="submit" variant="primary-bg">
+    <Button type="submit" variant="primary-bg" disabled={!(isValid && dirty)}>
       {children}
     </Button>
   );
@@ -81,6 +95,8 @@ Form.Submit = function FormSubmit({ children }) {
 
 Form.Submit.propTypes = {
   children: PropTypes.any.isRequired,
+  isValid: PropTypes.bool,
+  dirty: PropTypes.bool,
 };
 
 export default Form;
