@@ -1,9 +1,13 @@
-import { Form } from "src/modules/common/components";
+import { Form, Spinner } from "src/modules/common/components";
 import { object } from "yup";
 
 import { validateEmail, validatePassword } from "src/helpers/validateInputs";
+import supabase from "src/client";
+import { useSignUpMutation } from "../services/authServices";
 
 function SignupForm() {
+  const [signUp, { isLoading, isError, isSuccess }] = useSignUpMutation();
+
   return (
     <Form
       initialsValues={{
@@ -11,8 +15,9 @@ function SignupForm() {
         password: "",
       }}
       validationSchema={object({ ...validateEmail, ...validatePassword })}
-      onSubmit={(values) => {
-        console.log(values);
+      onSubmit={async ({ email, password }) => {
+        const res = await signUp({ email, password });
+        console.log(res);
       }}
     >
       <Form.Field label="Email" type="email" name="email" id="email" />
@@ -22,7 +27,7 @@ function SignupForm() {
         name="password"
         id="password"
       />
-      <Form.Submit>Signup</Form.Submit>
+      <Form.Submit>{isLoading && <Spinner />} Signup</Form.Submit>
     </Form>
   );
 }

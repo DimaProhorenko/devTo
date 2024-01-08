@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Formik, Form as FormikForm, useField } from "formik";
 import PropTypes from "prop-types";
-import { Button } from ".";
+import { Button, Spinner } from ".";
 import React from "react";
 
 function Form({ children, initialsValues, validationSchema, onSubmit }) {
@@ -85,11 +85,16 @@ Form.Field.propTypes = {
   id: PropTypes.string,
 };
 
-Form.Submit = function FormSubmit({ children, isValid, dirty }) {
+Form.Submit = function FormSubmit({ children, isValid, dirty, isLoading }) {
   return (
-    <Button type="submit" variant="primary-bg" disabled={!(isValid && dirty)}>
+    <button
+      type="submit"
+      className="flex cursor-pointer items-center gap-x-4 rounded-md bg-primary-500 px-4 py-2 font-medium text-white disabled:cursor-not-allowed disabled:opacity-30"
+      disabled={!(isValid && dirty)}
+    >
+      {isLoading && <Spinner />}
       {children}
-    </Button>
+    </button>
   );
 };
 
@@ -97,6 +102,7 @@ Form.Submit.propTypes = {
   children: PropTypes.any.isRequired,
   isValid: PropTypes.bool,
   dirty: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 
 export default Form;
