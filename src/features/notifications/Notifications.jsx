@@ -1,23 +1,18 @@
 import { useToaster } from "react-hot-toast/headless";
-import Notification from "./Notification";
 import { AnimatePresence } from "framer-motion";
+import Notification from "./Notification";
 
 function Notifications() {
   const { toasts, handlers } = useToaster();
-  console.log("TOASTS", toasts);
-  const { startPause, endPause, calculateOffset, updateHeight } = handlers;
+  const { startPause, endPause, updateHeight } = handlers;
   return (
     <AnimatePresence>
       <div
-        className="fixed right-2 top-2 w-full max-w-52"
+        className="fixed right-2 top-2 flex w-full max-w-52 flex-col gap-y-4"
         onMouseEnter={startPause}
         onMouseLeave={endPause}
       >
         {toasts.map((toast) => {
-          const offset = calculateOffset(toast, {
-            reverseOrder: false,
-            margin: 8,
-          });
           const ref = (el) => {
             if (el && typeof toast.height !== "number") {
               const height = el.getBoundingClientRect().height;
@@ -26,12 +21,7 @@ function Notifications() {
           };
 
           return (
-            <Notification
-              innerRef={ref}
-              offset={offset}
-              key={toast.id}
-              id={toast.id}
-            >
+            <Notification innerRef={ref} key={toast.id} id={toast.id}>
               {toast.message}
             </Notification>
           );

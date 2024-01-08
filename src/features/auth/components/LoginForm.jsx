@@ -1,22 +1,20 @@
 import { object } from "yup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast/headless";
 
 import { Form } from "src/modules/common/components";
 import { validateEmail, validatePassword } from "src/helpers/validateInputs";
 import { useLoginMutation } from "../services/authServices";
 import { setUser } from "src/features/user/userSlice";
 import { HOME } from "src/constants/routes";
-import toast from "react-hot-toast/headless";
 
 function LoginForm() {
   const [login, { isLoading, isError, error }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   if (isError) {
-    console.log("NEW TOAST");
     toast(error);
-    toast("fukc");
   }
   return (
     <>

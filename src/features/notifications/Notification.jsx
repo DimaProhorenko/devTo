@@ -1,26 +1,23 @@
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
-function Notification({ children, id, innerRef, offset }) {
+function Notification({ children, id, innerRef }) {
   return (
     <motion.div
       key={id}
       ref={innerRef}
-      className="absolute w-52 rounded-md bg-white p-4 shadow-sm"
+      className="w-52 rounded-md bg-white p-4 shadow-sm"
       initial={{
-        x: "100%",
+        translateX: "100%",
         opacity: 0,
       }}
       animate={{
-        x: 0,
+        translateX: 0,
         opacity: 1,
       }}
       exit={{
-        x: "100%",
+        translateX: "100%",
         opacity: 0,
-      }}
-      style={{
-        transform: `translateY(${offset}px)`,
       }}
     >
       {children}

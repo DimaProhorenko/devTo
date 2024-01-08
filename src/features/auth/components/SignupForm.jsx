@@ -2,6 +2,7 @@ import { Form } from "src/modules/common/components";
 import { object } from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast/headless";
 
 import {
   validateEmail,
@@ -13,9 +14,13 @@ import { setUser } from "src/features/user/userSlice";
 import { HOME } from "src/constants/routes";
 
 function SignupForm() {
-  const [signUp, { isLoading, isError }] = useSignUpMutation();
+  const [signUp, { isLoading, isError, error }] = useSignUpMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  if (isError) {
+    toast(error);
+  }
 
   return (
     <Form
