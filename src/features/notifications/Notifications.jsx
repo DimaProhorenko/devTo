@@ -21,7 +21,14 @@ function Notifications() {
           };
 
           return (
-            <Notification innerRef={ref} key={toast.id} id={toast.id}>
+            <Notification
+              innerRef={ref}
+              key={toast.id}
+              id={toast.id}
+              className={toast.className}
+              style={toast.style}
+              type={toast.type}
+            >
               {toast.message}
             </Notification>
           );

@@ -12,15 +12,20 @@ import {
 import { useSignUpMutation } from "../services/authServices";
 import { setUser } from "src/features/user/userSlice";
 import { HOME } from "src/constants/routes";
+import { useEffect } from "react";
+import useNotification from "src/features/notifications/useNotification";
 
 function SignupForm() {
   const [signUp, { isLoading, isError, error }] = useSignUpMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { showError, showSuccess } = useNotification();
 
-  if (isError) {
-    toast(error);
-  }
+  useEffect(() => {
+    if (isError) {
+      showError(error);
+    }
+  }, [isError, error, showError]);
 
   return (
     <Form
@@ -36,9 +41,10 @@ function SignupForm() {
       })}
       onSubmit={async ({ email, password, username }) => {
         const { data } = await signUp({ email, password, username });
-        if (!isLoading && !isError) {
+        if (!isLoading && !isError && data) {
           const { user, session } = data;
           dispatch(setUser({ user, session }));
+          showSuccess("Signed up");
           navigate(HOME);
         }
       }}

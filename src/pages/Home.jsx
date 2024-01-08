@@ -1,12 +1,14 @@
 import toast from "react-hot-toast/headless";
+import useNotification from "src/features/notifications/useNotification";
 
 function Home() {
+  const { showSuccess } = useNotification();
   return (
     <div>
       <button
         className="rounded-md border border-blue-400 px-4 py-2"
         onClick={() => {
-          toast(Math.random());
+          showSuccess(Math.random());
         }}
       >
         ADD TOAST

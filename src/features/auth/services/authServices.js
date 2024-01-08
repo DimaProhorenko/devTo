@@ -15,9 +15,12 @@ export const authApi = createApi({
               },
             },
           });
+          if (res.error) {
+            throw new Error(res.error.message);
+          }
           return res;
         } catch (err) {
-          return err;
+          return { error: err.message };
         }
       },
     }),

@@ -8,14 +8,21 @@ import { validateEmail, validatePassword } from "src/helpers/validateInputs";
 import { useLoginMutation } from "../services/authServices";
 import { setUser } from "src/features/user/userSlice";
 import { HOME } from "src/constants/routes";
+import { useEffect } from "react";
+import useNotification from "src/features/notifications/useNotification";
 
 function LoginForm() {
   const [login, { isLoading, isError, error }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  if (isError) {
-    toast(error);
-  }
+  const { showError, showSuccess } = useNotification();
+
+  useEffect(() => {
+    if (isError) {
+      showError(error);
+    }
+  }, [error, isError, showError]);
+
   return (
     <>
       {isError && <p>{error}</p>}
@@ -30,6 +37,7 @@ function LoginForm() {
           const { data } = await login({ email, password });
           if (!isLoading && !isError) {
             const { session, user } = data;
+            showSuccess("Logged in");
             dispatch(setUser({ session, user }));
             navigate(HOME);
           }
