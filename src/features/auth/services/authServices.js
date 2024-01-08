@@ -21,7 +21,23 @@ export const authApi = createApi({
         }
       },
     }),
+    login: builder.mutation({
+      queryFn: async ({ email, password }) => {
+        try {
+          const res = await supabase.auth.signInWithPassword({
+            email,
+            password,
+          });
+          if (res.error) {
+            throw new Error(res.error.message);
+          }
+          return res;
+        } catch (err) {
+          return { error: err.message };
+        }
+      },
+    }),
   }),
 });
 
-export const { useSignUpMutation } = authApi;
+export const { useSignUpMutation, useLoginMutation } = authApi;

@@ -7,6 +7,8 @@ import Header from "./Header";
 
 import { SIGN_UP } from "src/constants/routes";
 import { getUser } from "src/features/user/userSlice";
+import { isUser } from "src/helpers/userUtils";
+import ProfileDropdown from "src/modules/profile/components/ProfileDropdown";
 
 function HeaderMobile({ onOpenMenu }) {
   const user = useSelector(getUser);
@@ -20,7 +22,11 @@ function HeaderMobile({ onOpenMenu }) {
         </Header.Cell>
         <Header.Cell>
           <SearchIcon />
-          <Button to={SIGN_UP}>Create Account</Button>
+          {isUser(user) ? (
+            <ProfileDropdown user={user} />
+          ) : (
+            <Button to={SIGN_UP}>Create Account</Button>
+          )}
         </Header.Cell>
       </Header.Content>
     </Header>
