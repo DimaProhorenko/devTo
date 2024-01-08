@@ -12,3 +12,12 @@ export const validatePassword = {
       "Minimum eight and maximum 16 characters, at least one uppercase letter, one lowercase letter, one number and one special character",
     ),
 };
+
+export const validateUsername = {
+  username: string()
+    .required("Field is required")
+    .matches(
+      /^(?=[a-zA-Z0-9._]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
+      "Minimum 6 and maximum 16 characters. Only contains alphanumeric characters, underscore and dot.",
+    ),
+};

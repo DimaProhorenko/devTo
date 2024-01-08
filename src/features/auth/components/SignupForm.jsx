@@ -1,25 +1,44 @@
-import { Form, Spinner } from "src/modules/common/components";
+import { Form } from "src/modules/common/components";
 import { object } from "yup";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import { validateEmail, validatePassword } from "src/helpers/validateInputs";
-import supabase from "src/client";
+import {
+  validateEmail,
+  validatePassword,
+  validateUsername,
+} from "src/helpers/validateInputs";
 import { useSignUpMutation } from "../services/authServices";
+import { setUser } from "src/features/user/userSlice";
+import { HOME } from "src/constants/routes";
 
 function SignupForm() {
-  const [signUp, { isLoading, isError, isSuccess }] = useSignUpMutation();
+  const [signUp, { isLoading, isError }] = useSignUpMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <Form
       initialsValues={{
         email: "",
         password: "",
+        username: "",
       }}
-      validationSchema={object({ ...validateEmail, ...validatePassword })}
-      onSubmit={async ({ email, password }) => {
-        const res = await signUp({ email, password });
-        console.log(res);
+      validationSchema={object({
+        ...validateEmail,
+        ...validatePassword,
+        ...validateUsername,
+      })}
+      onSubmit={async ({ email, password, username }) => {
+        const { data } = await signUp({ email, password, username });
+        if (!isLoading && !isError) {
+          const { user, session } = data;
+          dispatch(setUser({ user, session }));
+          navigate(HOME);
+        }
       }}
     >
+      <Form.Field label="Username" type="text" name="username" id="username" />
       <Form.Field label="Email" type="email" name="email" id="email" />
       <Form.Field
         label="Password"
@@ -27,7 +46,7 @@ function SignupForm() {
         name="password"
         id="password"
       />
-      <Form.Submit>{isLoading && <Spinner />} Signup</Form.Submit>
+      <Form.Submit isLoading={isLoading}>Signup</Form.Submit>
     </Form>
   );
 }
