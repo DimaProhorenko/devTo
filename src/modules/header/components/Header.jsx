@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
-import { Logo } from "../../common/components";
+import { Container } from "src/modules/common/components";
 
 function Header({ children }) {
   return (
     <header className="py-4">
-      <div className="container">{children}</div>
+      <Container className="container">{children}</Container>
     </header>
   );
 }

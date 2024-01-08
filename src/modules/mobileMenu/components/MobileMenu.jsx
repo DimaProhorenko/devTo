@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { motion, easeIn } from "framer-motion";
-import { IconLink } from "src/modules/common/components";
+import { Container, IconLink } from "src/modules/common/components";
 
 function MobileMenu({ children, innerRef }) {
   return (
@@ -12,7 +12,7 @@ function MobileMenu({ children, innerRef }) {
       ref={innerRef}
       className="fixed left-0 top-0 h-full w-full -translate-y-full  bg-white"
     >
-      <div className="container h-full">{children}</div>
+      <Container className="h-full">{children}</Container>
     </motion.div>
   );
 }

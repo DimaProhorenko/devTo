@@ -1,0 +1,86 @@
+import { Formik, Form as FormikForm, useField } from "formik";
+import PropTypes from "prop-types";
+import { Button } from ".";
+
+function Form({ children, initialsValues, validationSchema, onSubmit }) {
+  return (
+    <Formik
+      initialValues={initialsValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      <FormikForm className="space-y-6">{children}</FormikForm>
+    </Formik>
+  );
+}
+
+Form.propTypes = {
+  children: PropTypes.any.isRequired,
+  initialsValues: PropTypes.object.isRequired,
+  validationSchema: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+Form.Label = function FormLabel({ children, htmlFor }) {
+  return (
+    <label
+      htmlFor={htmlFor}
+      className="block text-xl font-medium text-stone-800"
+    >
+      {children}
+    </label>
+  );
+};
+
+Form.Label.propTypes = {
+  children: PropTypes.any.isRequired,
+  htmlFor: PropTypes.string.isRequired,
+};
+
+Form.Input = function FormInput({ ...restProps }) {
+  return (
+    <input
+      className="block w-full rounded-md border border-stone-300 px-2 py-2 hover:border-primary-500  focus:outline-none focus:ring focus:ring-primary-500 focus:ring-offset-2"
+      {...restProps}
+    />
+  );
+};
+
+Form.Error = function FormError({ children }) {
+  return <small className="block text-sm text-red-500">{children}</small>;
+};
+
+Form.Error.propTypes = {
+  children: PropTypes.any.isRequired,
+};
+
+Form.Field = function FormField({ label, ...props }) {
+  const [field, meta] = useField(props);
+  return (
+    <div className="space-y-3">
+      <Form.Label htmlFor={props.name || props.id}>{label}</Form.Label>
+      <Form.Input {...field} {...props} />
+      {meta.touched && meta.error && <Form.Error>{meta.error}</Form.Error>}
+    </div>
+  );
+};
+
+Form.Field.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string,
+};
+
+Form.Submit = function FormSubmit({ children }) {
+  return (
+    <Button type="submit" variant="primary-bg">
+      {children}
+    </Button>
+  );
+};
+
+Form.Submit.propTypes = {
+  children: PropTypes.any.isRequired,
+};
+
+export default Form;

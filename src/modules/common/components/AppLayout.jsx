@@ -21,7 +21,7 @@ function AppLayout() {
       <AnimatePresence>
         {isMenuOpen && <MobileMenuContainer onCloseMenu={handleCloseMenu} />}
       </AnimatePresence>
-      <main>
+      <main className="py-5">
         <Outlet />
       </main>
     </>
