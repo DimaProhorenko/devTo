@@ -17,15 +17,15 @@ function Button({
       "opacity-50 cursor-not-allowed": disabled,
     },
     {
-      "border-primary-500 enabled:hover:bg-primary-500 block border text-primary-500 enabled:hover:text-white":
+      "border-primary-500 hover:bg-primary-500 block border text-primary-500 hover:text-white":
         variant === "primary",
     },
     {
-      "border border-transparent bg-primary-500 text-white enabled:hover:bg-transparent enabled:hover:border-primary-500 enabled:hover:text-primary-500":
+      "border border-transparent bg-primary-500 text-white hover:bg-transparent hover:border-primary-500 hover:text-primary-500":
         variant === "primary-bg",
     },
     {
-      "bg-stone-200 enabled:hover:bg-primary-100 text-black enabled:hover:text-primary-500":
+      "bg-stone-200 hover:bg-primary-100 text-black hover:text-primary-500":
         variant === "gray",
     },
     {
