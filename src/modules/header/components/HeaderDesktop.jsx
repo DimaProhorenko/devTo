@@ -27,7 +27,7 @@ function HeaderDesktop() {
           {isUserSignedIn && (
             <>
               <Button to={CREATE_POST}>Create Post</Button>
-              <ProfileDropdown />
+              <ProfileDropdown user={user} />
             </>
           )}
           {!isUserSignedIn && (
