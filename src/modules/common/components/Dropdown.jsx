@@ -17,7 +17,11 @@ Dropdown.Toggler.propTypes = {
 };
 
 Dropdown.Body = function DropdownBody({ children }) {
-  return <div>{children}</div>;
+  return (
+    <div className="absolute right-0 top-full border border-stone-200 bg-white p-2">
+      {children}
+    </div>
+  );
 };
 
 Dropdown.Body.propTypes = {
