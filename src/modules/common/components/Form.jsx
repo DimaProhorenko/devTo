@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 import { Spinner } from ".";
 import React from "react";
 
-function Form({ children, initialsValues, validationSchema, onSubmit }) {
+function Form({
+  children,
+  initialsValues,
+  validationSchema,
+  onSubmit,
+  className = "",
+}) {
   return (
     <Formik
       initialValues={initialsValues}
@@ -13,7 +19,7 @@ function Form({ children, initialsValues, validationSchema, onSubmit }) {
     >
       {({ isValid, dirty }) => {
         return (
-          <FormikForm className="space-y-6">
+          <FormikForm className={`space-y-6 ${className}`}>
             {React.Children.map(children, (child) => {
               if (child.type === Form.Submit) {
                 return React.cloneElement(child, { isValid, dirty });
@@ -23,7 +29,6 @@ function Form({ children, initialsValues, validationSchema, onSubmit }) {
           </FormikForm>
         );
       }}
-      {/* <FormikForm className="space-y-6">{children}</FormikForm> */}
     </Formik>
   );
 }
@@ -33,6 +38,7 @@ Form.propTypes = {
   initialsValues: PropTypes.object.isRequired,
   validationSchema: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 Form.Label = function FormLabel({ children, htmlFor }) {
@@ -57,6 +63,20 @@ Form.Input = function FormInput({ ...restProps }) {
       className="block w-full rounded-md border border-stone-300 px-2 py-2 hover:border-primary-500  focus:outline-none focus:ring focus:ring-primary-500 focus:ring-offset-2"
       {...restProps}
     />
+  );
+};
+
+Form.InputM = function FormInputM({ ...props }) {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <input
+        className="block w-full rounded-md border border-stone-300 px-2 py-2 hover:border-primary-500  focus:outline-none focus:ring focus:ring-primary-500 focus:ring-offset-2"
+        {...field}
+        {...props}
+      />
+      {meta.touched && meta.error && <Form.Error>{meta.error}</Form.Error>}
+    </>
   );
 };
 
