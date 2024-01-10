@@ -32,4 +32,12 @@ Header.Cell.propTypes = {
   className: PropTypes.string,
 };
 
+Header.Location = function HeaderLocation({ children }) {
+  return <span className="block font-medium capitalize">{children}</span>;
+};
+
+Header.Location.propTypes = {
+  children: PropTypes.any.isRequired,
+};
+
 export default Header;

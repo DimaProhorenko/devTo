@@ -1,11 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AppLayout } from "./modules/common/components/";
-import { Home, Login, Signup } from "./pages";
-import { LOGIN, SIGN_OUT, SIGN_UP } from "./constants/routes";
-import Signout from "./pages/Signout";
 import { useEffect } from "react";
-import supabase from "./client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+import { AppLayout } from "./modules/common/components/";
+import { Home, Login, NewPost, Signup, Signout } from "./pages";
+import { CREATE_POST, LOGIN, SIGN_OUT, SIGN_UP } from "./constants/routes";
+import supabase from "./client";
 import { setUser } from "./features/user/userSlice";
 
 function App() {
@@ -30,6 +30,7 @@ function App() {
           <Route path={SIGN_OUT} element={<Signout />} />
           <Route index element={<Home />} />
         </Route>
+        <Route path={CREATE_POST} element={<NewPost />} />
       </Routes>
     </BrowserRouter>
   );
