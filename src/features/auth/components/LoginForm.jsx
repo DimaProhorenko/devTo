@@ -1,19 +1,15 @@
 import { object } from "yup";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast/headless";
 
 import { Form } from "src/modules/common/components";
 import { validateEmail, validatePassword } from "src/helpers/validateInputs";
 import { useLoginMutation } from "../services/authServices";
-import { setUser } from "src/features/user/userSlice";
 import { HOME } from "src/constants/routes";
 import { useEffect } from "react";
 import useNotification from "src/features/notifications/useNotification";
 
 function LoginForm() {
   const [login, { isLoading, isError, error }] = useLoginMutation();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { showError, showSuccess } = useNotification();
 

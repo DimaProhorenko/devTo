@@ -45,7 +45,7 @@ export const authApi = createApi({
         try {
           const { err } = await supabase.auth.signOut();
           if (err) {
-            console.log(err);
+            throw new Error(err.message);
           }
         } catch (err) {
           return { error: err.message };
