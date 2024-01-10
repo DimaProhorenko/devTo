@@ -1,6 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import supabase from "src/client";
 import Notifications from "src/features/notifications/Notifications";
 import HeaderDesktop from "src/modules/header/components/HeaderDesktop";
 import HeaderMobile from "src/modules/header/components/HeaderMobile";
@@ -51,7 +52,7 @@ function AppLayout() {
       )}
       {!isScreenSmall && <HeaderDesktop />}
       <Notifications />
-      <main className="py-5">
+      <main>
         <Outlet />
       </main>
     </>

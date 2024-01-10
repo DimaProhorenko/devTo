@@ -3,7 +3,7 @@ import { Container } from "src/modules/common/components";
 
 function Header({ children }) {
   return (
-    <header className="py-4 shadow">
+    <header className="fixed left-0 top-0 z-30 w-full py-4 shadow">
       <Container className="container">{children}</Container>
     </header>
   );

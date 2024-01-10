@@ -56,7 +56,7 @@ Dropdown.Body.propTypes = {
 };
 
 Dropdown.Top = function DropdownTop({ children }) {
-  return <div className="">{children}</div>;
+  return <div className="pb-2">{children}</div>;
 };
 
 Dropdown.Top.propTypes = {
@@ -74,7 +74,7 @@ Dropdown.Mid.propTypes = {
 };
 
 Dropdown.Bot = function DropdownBot({ children }) {
-  return <div>{children}</div>;
+  return <div className="pt-2">{children}</div>;
 };
 
 Dropdown.Bot.propTypes = {

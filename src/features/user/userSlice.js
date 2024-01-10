@@ -9,8 +9,8 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
-      state.user = action.payload.user;
-      state.session = action.payload.session;
+      state.user = action.payload;
+      // state.session = action.payload.session;
     },
   },
 });

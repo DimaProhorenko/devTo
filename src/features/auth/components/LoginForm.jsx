@@ -36,9 +36,9 @@ function LoginForm() {
         onSubmit={async ({ email, password }) => {
           const { data } = await login({ email, password });
           if (!isLoading && !isError) {
-            const { session, user } = data;
+            // const { session, user } = data;
             showSuccess("Logged in");
-            dispatch(setUser({ session, user }));
+            // dispatch(setUser({ session, user }));
             navigate(HOME);
           }
         }}

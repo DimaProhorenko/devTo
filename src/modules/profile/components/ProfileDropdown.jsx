@@ -3,13 +3,8 @@ import { Dropdown, LinkBlock } from "src/modules/common/components";
 import ProfileImage from "./ProfileImage";
 
 import profileIcon from "src/assets/icons/profile.png";
-import {
-  CREATE_POST,
-  DASHBOARD,
-  HOME,
-  SAVED_POSTS,
-  SIGN_OUT,
-} from "src/constants/routes";
+import { HOME, SIGN_OUT } from "src/constants/routes";
+import ProfileNav from "./ProfileNav";
 
 function ProfileDropdown({ user }) {
   const { username } = user;
@@ -23,17 +18,7 @@ function ProfileDropdown({ user }) {
           <LinkBlock to={HOME}>@bxleinx</LinkBlock>
         </Dropdown.Top>
         <Dropdown.Mid>
-          <ul>
-            <li>
-              <LinkBlock to={DASHBOARD}>Dashboard</LinkBlock>
-            </li>
-            <li>
-              <LinkBlock to={CREATE_POST}>Create Post</LinkBlock>
-            </li>
-            <li>
-              <LinkBlock to={SAVED_POSTS}>Saved Posts</LinkBlock>
-            </li>
-          </ul>
+          <ProfileNav />
         </Dropdown.Mid>
         <Dropdown.Bot>
           <LinkBlock to={SIGN_OUT}>Sign out</LinkBlock>

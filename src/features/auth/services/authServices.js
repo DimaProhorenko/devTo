@@ -40,7 +40,20 @@ export const authApi = createApi({
         }
       },
     }),
+    signOut: builder.mutation({
+      queryFn: async () => {
+        try {
+          const { err } = await supabase.auth.signOut();
+          if (err) {
+            console.log(err);
+          }
+        } catch (err) {
+          return { error: err.message };
+        }
+      },
+    }),
   }),
 });
 
-export const { useSignUpMutation, useLoginMutation } = authApi;
+export const { useSignUpMutation, useLoginMutation, useSignOutMutation } =
+  authApi;
