@@ -28,4 +28,9 @@
   .mobile-menu-bot {
     clip-path: polygon(100% 100%, 0 100%, 100% 20%);
   }
+  .tiptap {
+    min-height: 250px;
+    outline: none;
+    padding: 20px 10px;
+  }
 }

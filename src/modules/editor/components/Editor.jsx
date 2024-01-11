@@ -2,6 +2,7 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Toolbar from "./Toolbar";
+import { Card } from "src/modules/common/components";
 
 // define your extension array
 const extensions = [StarterKit];
@@ -19,15 +20,14 @@ const Editor = () => {
   }
 
   return (
-    <div>
-      <Toolbar editor={editor} />
-      <EditorContent editor={editor} />
-    </div>
-    // <EditorProvider
-    //   slotBefore={<Toolbar />}
-    //   extensions={extensions}
-    //   content={content}
-    // ></EditorProvider>
+    <Card padding={false}>
+      <Card.Header>
+        <Toolbar editor={editor} />
+      </Card.Header>
+      <Card.Body>
+        <EditorContent editor={editor} />
+      </Card.Body>
+    </Card>
   );
 };
 

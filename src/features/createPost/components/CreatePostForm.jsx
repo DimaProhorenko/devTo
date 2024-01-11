@@ -26,6 +26,7 @@ function CreatePostForm() {
       <Form.Group>
         <Editor />
       </Form.Group>
+      <Form.Submit>Publish</Form.Submit>
     </Form>
   );
 }
