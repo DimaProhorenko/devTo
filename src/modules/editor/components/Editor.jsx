@@ -1,13 +1,17 @@
 /* eslint-disable react-refresh/only-export-components */
 import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import Document from "@tiptap/extension-document";
+import Text from "@tiptap/extension-text";
+import Paragraph from "@tiptap/extension-paragraph";
+import BulletList from "@tiptap/extension-bullet-list";
+import ListItem from "@tiptap/extension-list-item";
+
 import Toolbar from "./Toolbar";
 import { Card } from "src/modules/common/components";
 
-// define your extension array
-const extensions = [StarterKit];
+const extensions = [Document, Paragraph, Text, BulletList, ListItem];
 
-const content = "<p>Hello World!</p>";
+const content = "<ul><li>Hello World!skldj</li></ul>";
 
 const Editor = () => {
   const editor = useEditor({
@@ -25,7 +29,7 @@ const Editor = () => {
         <Toolbar editor={editor} />
       </Card.Header>
       <Card.Body>
-        <EditorContent editor={editor} />
+        <EditorContent className="p-2" editor={editor} />
       </Card.Body>
     </Card>
   );

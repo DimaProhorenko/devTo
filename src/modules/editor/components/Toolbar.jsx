@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
-import BoldBtn from "./buttons/BoldBtn";
-import ItalicBtn from "./buttons/ItalicBtn";
+import { BoldBtn, ItalicBtn, ListBtn } from "./buttons";
 
 function Toolbar({ editor }) {
   return (
     <div className="px-2">
       <BoldBtn editor={editor} />
       <ItalicBtn editor={editor} />
+      <ListBtn editor={editor} />
     </div>
   );
 }
