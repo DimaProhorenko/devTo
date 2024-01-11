@@ -21,3 +21,9 @@ export const validateUsername = {
       "Minimum 6 and maximum 16 characters. Only contains alphanumeric characters, underscore and dot.",
     ),
 };
+
+export const validatePostTitle = {
+  title: string()
+    .required("Field is required")
+    .min(3, "Must be at least 3 chars long"),
+};

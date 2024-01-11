@@ -1,12 +1,15 @@
+import CreatePostForm from "src/features/createPost/components/CreatePostForm";
 import CreatePostHeader from "src/features/createPost/components/CreatePostHeader";
-import { Section, Title } from "src/modules/common/components";
+import { Container, Section } from "src/modules/common/components";
 
 function NewPost() {
   return (
     <>
       <CreatePostHeader />
-      <Section>
-        <Title>Create new post</Title>
+      <Section container={false}>
+        <Container mw="xl">
+          <CreatePostForm />
+        </Container>
       </Section>
     </>
   );

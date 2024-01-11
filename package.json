@@ -10,8 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdxeditor/editor": "^2.2.1",
     "@reduxjs/toolkit": "^2.0.1",
     "@supabase/supabase-js": "^2.39.2",
+    "@tiptap/extension-color": "^2.1.15",
+    "@tiptap/extension-text-style": "^2.1.15",
+    "@tiptap/pm": "^2.1.15",
+    "@tiptap/react": "^2.1.15",
+    "@tiptap/starter-kit": "^2.1.15",
     "clsx": "^2.1.0",
     "formik": "^2.4.5",
     "framer-motion": "^10.17.6",

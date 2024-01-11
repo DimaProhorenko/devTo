@@ -57,7 +57,7 @@ Form.Label.propTypes = {
   htmlFor: PropTypes.string.isRequired,
 };
 
-Form.InputM = function FormInput({ ...restProps }) {
+Form.InputM = function FormInputM({ ...restProps }) {
   return (
     <input
       className="block w-full rounded-md border border-stone-300 px-2 py-2 hover:border-primary-500  focus:outline-none focus:ring focus:ring-primary-500 focus:ring-offset-2"
@@ -66,7 +66,7 @@ Form.InputM = function FormInput({ ...restProps }) {
   );
 };
 
-Form.Input = function FormInputM({ ...props }) {
+Form.Input = function FormInput({ ...props }) {
   const [field, meta] = useField(props);
   return (
     <>
@@ -79,6 +79,8 @@ Form.Input = function FormInputM({ ...props }) {
     </>
   );
 };
+
+Form.FileInput = function FormFileInput() {};
 
 Form.Error = function FormError({ children }) {
   return <small className="block text-sm text-red-500">{children}</small>;
@@ -103,6 +105,14 @@ Form.Field.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string,
+};
+
+Form.Group = function FormGroup({ children }) {
+  return <div className="">{children}</div>;
+};
+
+Form.Group.propTypes = {
+  children: PropTypes.any.isRequired,
 };
 
 Form.Submit = function FormSubmit({ children, isValid, dirty, isLoading }) {
