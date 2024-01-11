@@ -3,15 +3,25 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
 import Text from "@tiptap/extension-text";
 import Paragraph from "@tiptap/extension-paragraph";
+import Italic from "@tiptap/extension-italic";
+import Bold from "@tiptap/extension-bold";
 import BulletList from "@tiptap/extension-bullet-list";
 import ListItem from "@tiptap/extension-list-item";
 
 import Toolbar from "./Toolbar";
 import { Card } from "src/modules/common/components";
 
-const extensions = [Document, Paragraph, Text, BulletList, ListItem];
+const extensions = [
+  Document,
+  Paragraph,
+  Text,
+  Italic,
+  Bold,
+  BulletList,
+  ListItem,
+];
 
-const content = "<ul><li>Hello World!skldj</li></ul>";
+const content = "";
 
 const Editor = () => {
   const editor = useEditor({
