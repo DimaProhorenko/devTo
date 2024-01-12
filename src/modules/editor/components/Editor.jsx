@@ -12,6 +12,7 @@ import Image from "@tiptap/extension-image";
 
 import Toolbar from "./Toolbar";
 import { Card } from "src/modules/common/components";
+import { useState } from "react";
 
 const extensions = [
   Document,
@@ -28,9 +29,13 @@ const extensions = [
 const content = "";
 
 const Editor = () => {
+  const [text, setText] = useState("");
   const editor = useEditor({
     extensions,
     content,
+    onUpdate({ editor }) {
+      setText(editor.getJSON());
+    },
   });
 
   if (!editor) {
