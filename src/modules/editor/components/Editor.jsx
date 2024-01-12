@@ -7,6 +7,7 @@ import Italic from "@tiptap/extension-italic";
 import Bold from "@tiptap/extension-bold";
 import BulletList from "@tiptap/extension-bullet-list";
 import ListItem from "@tiptap/extension-list-item";
+import Code from "@tiptap/extension-code";
 
 import Toolbar from "./Toolbar";
 import { Card } from "src/modules/common/components";
@@ -19,6 +20,7 @@ const extensions = [
   Bold,
   BulletList,
   ListItem,
+  Code,
 ];
 
 const content = "";

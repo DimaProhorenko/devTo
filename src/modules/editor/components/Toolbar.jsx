@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { BoldBtn, ItalicBtn, ListBtn } from "./buttons";
+import { BoldBtn, CodeBtn, ItalicBtn, ListBtn } from "./buttons";
 
 function Toolbar({ editor }) {
   return (
@@ -7,6 +7,7 @@ function Toolbar({ editor }) {
       <BoldBtn editor={editor} />
       <ItalicBtn editor={editor} />
       <ListBtn editor={editor} />
+      <CodeBtn editor={editor} />
     </div>
   );
 }
