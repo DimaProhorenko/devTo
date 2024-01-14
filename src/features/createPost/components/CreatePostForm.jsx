@@ -1,10 +1,24 @@
+import { useState } from "react";
 import { object } from "yup";
 
 import { Form } from "src/modules/common/components";
 import { validatePostTitle } from "src/helpers/validateInputs";
 import Editor from "src/modules/editor/components/Editor";
+import supabase from "src/client";
 
 function CreatePostForm() {
+  const [text, setText] = useState("");
+
+  const handleSavePost = async (title) => {
+    const res = await supabase.from("posts").insert([
+      {
+        authorId: 123456,
+        title,
+        body: text,
+      },
+    ]);
+  };
+
   return (
     <Form
       initialsValues={{
@@ -12,7 +26,7 @@ function CreatePostForm() {
       }}
       validationSchema={object({ ...validatePostTitle })}
       onSubmit={(values) => {
-        console.log(values);
+        handleSavePost(values.title);
       }}
     >
       <Form.Group>
@@ -24,7 +38,7 @@ function CreatePostForm() {
         />
       </Form.Group>
       <Form.Group>
-        <Editor />
+        <Editor cb={setText} />
       </Form.Group>
       <Form.Submit>Publish</Form.Submit>
     </Form>

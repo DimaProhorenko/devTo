@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+import PropTypes from "prop-types";
 import { EditorContent, useEditor } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
 import Text from "@tiptap/extension-text";
@@ -12,7 +13,6 @@ import Image from "@tiptap/extension-image";
 
 import Toolbar from "./Toolbar";
 import { Card } from "src/modules/common/components";
-import { useState } from "react";
 
 const extensions = [
   Document,
@@ -28,13 +28,12 @@ const extensions = [
 
 const content = "";
 
-const Editor = () => {
-  const [text, setText] = useState("");
+const Editor = ({ cb }) => {
   const editor = useEditor({
     extensions,
     content,
     onUpdate({ editor }) {
-      setText(editor.getJSON());
+      cb(editor.getHTML());
     },
   });
 
@@ -52,6 +51,10 @@ const Editor = () => {
       </Card.Body>
     </Card>
   );
+};
+
+Editor.propTypes = {
+  cb: PropTypes.func,
 };
 
 export default Editor;
