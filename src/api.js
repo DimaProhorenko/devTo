@@ -1,6 +1,9 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { login, signOut, signUp } from "./features/auth/services/authServices";
-import { createPost } from "./features/createPost/services/createPostService";
+import {
+  createPost,
+  fetchPostById,
+} from "./features/posts/services/postService";
 
 export const api = createApi({
   reducerPath: "api",
@@ -20,6 +23,9 @@ export const api = createApi({
     createPost: builder.mutation({
       queryFn: createPost,
     }),
+    fetchPostById: builder.query({
+      queryFn: fetchPostById,
+    }),
   }),
 });
 
@@ -28,4 +34,5 @@ export const {
   useLoginMutation,
   useSignOutMutation,
   useCreatePostMutation,
+  useFetchPostByIdQuery,
 } = api;

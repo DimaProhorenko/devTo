@@ -1,5 +1,5 @@
-import CreatePostForm from "src/features/createPost/components/CreatePostForm";
-import CreatePostHeader from "src/features/createPost/components/CreatePostHeader";
+import CreatePostForm from "src/features/posts/components/CreatePostForm";
+import CreatePostHeader from "src/features/posts/components/CreatePostHeader";
 import { Container, Section } from "src/modules/common/components";
 
 function NewPost() {

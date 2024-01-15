@@ -8,12 +8,15 @@ import Editor from "src/modules/editor/components/Editor";
 import { getUserId } from "src/features/user/userSlice";
 import { useCreatePostMutation } from "src/api";
 import useMutationWithRedirect from "src/hooks/useMutationWithRedirect";
+import { useNavigate } from "react-router-dom";
+import { POST } from "src/constants/routes";
 
 function CreatePostForm() {
   const [createPost, { isLoading }] = useMutationWithRedirect(
     useCreatePostMutation,
     "Post created",
   );
+  const navigate = useNavigate();
   const [text, setText] = useState("");
   const authorId = useSelector(getUserId);
 
@@ -24,11 +27,14 @@ function CreatePostForm() {
       }}
       validationSchema={object({ ...validatePostTitle })}
       onSubmit={async ({ title }) => {
-        const data = await createPost({
+        const { data } = await createPost({
           authorId,
           title,
           body: text,
         });
+        if (data) {
+          navigate(`${POST}/${data[0].id}`);
+        }
       }}
     >
       <Form.Group>
