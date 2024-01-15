@@ -1,18 +1,19 @@
-import Post from "src/features/posts/components/Post";
-import { Container, Main } from "src/modules/common/components";
+import PostContainer from "src/features/posts/components/PostContainer";
+import { Main, Section } from "src/modules/common/components";
 
 function SinglePost() {
   return (
-    <Container>
+    <Section>
       <Main>
+        <Main.SmallSide>Left side</Main.SmallSide>
         <Main.Body>
-          <Post />
+          <PostContainer />
         </Main.Body>
         <Main.Sidebar>
           <h1>Sidebar</h1>
         </Main.Sidebar>
       </Main>
-    </Container>
+    </Section>
   );
 }
 export default SinglePost;

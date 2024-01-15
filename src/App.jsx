@@ -4,7 +4,13 @@ import { useDispatch } from "react-redux";
 
 import { AppLayout } from "./modules/common/components/";
 import { Home, Login, NewPost, Signup, Signout, SinglePost } from "./pages";
-import { LOGIN, POST, SIGN_OUT, SIGN_UP } from "./constants/routes";
+import {
+  CREATE_POST,
+  LOGIN,
+  POST,
+  SIGN_OUT,
+  SIGN_UP,
+} from "./constants/routes";
 import supabase from "./client";
 import { setUser } from "./features/user/userSlice";
 
@@ -29,12 +35,12 @@ function App() {
           <Route path={SIGN_UP} element={<Signup />} />
           <Route path={SIGN_OUT} element={<Signout />} />
           <Route index element={<Home />} />
+          <Route path={POST}>
+            <Route path=":id" element={<SinglePost />} />
+          </Route>
         </Route>
-        <Route path={POST}>
-          <Route path=":id" element={<SinglePost />} />
-          <Route path="new" element={<NewPost />} index />
-        </Route>
-        {/* <Route path={CREATE_POST} element={<NewPost />} /> */}
+
+        <Route path={CREATE_POST} element={<NewPost />} />
       </Routes>
     </BrowserRouter>
   );

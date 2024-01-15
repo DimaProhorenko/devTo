@@ -1,15 +1,22 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 
-function Card({ children, padding = true }) {
-  const classes = clsx("rounded-md border border-stone-300", {
-    "p-2": padding,
-  });
+function Card({ children, padding = true, className = "" }) {
+  const classes = clsx(
+    "rounded-md border border-stone-300",
+    {
+      "p-2": padding,
+    },
+    {
+      [className]: className,
+    },
+  );
   return <div className={classes}>{children}</div>;
 }
 
 Card.propTypes = {
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
   padding: PropTypes.bool,
 };
 
