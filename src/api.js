@@ -1,5 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { login, signOut, signUp } from "./features/auth/services/authServices";
+import { createPost } from "./features/createPost/services/createPostService";
 
 export const api = createApi({
   reducerPath: "api",
@@ -14,7 +15,17 @@ export const api = createApi({
     signOut: builder.mutation({
       queryFn: signOut,
     }),
+
+    // Posts
+    createPost: builder.mutation({
+      queryFn: createPost,
+    }),
   }),
 });
 
-export const { useSignUpMutation, useLoginMutation, useSignOutMutation } = api;
+export const {
+  useSignUpMutation,
+  useLoginMutation,
+  useSignOutMutation,
+  useCreatePostMutation,
+} = api;

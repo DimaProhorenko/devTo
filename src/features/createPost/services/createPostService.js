@@ -1,5 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import supabase from "src/client";
+import { addServiceResponseValidation } from "src/helpers/apiHelpers";
 
 export const createPostApi = createApi({
   reducerPath: "createPost",
@@ -27,4 +28,14 @@ export const createPostApi = createApi({
   }),
 });
 
-export const { useCreatePostMutation } = createPostApi;
+// export const { useCreatePostMutation } = createPostApi;
+
+export const createPost = async ({ authorId, title, body }) => {
+  return addServiceResponseValidation(supabase.from("posts").insert, [
+    {
+      authorId,
+      title,
+      body,
+    },
+  ]);
+};

@@ -6,7 +6,7 @@ import { Form } from "src/modules/common/components";
 import { validatePostTitle } from "src/helpers/validateInputs";
 import Editor from "src/modules/editor/components/Editor";
 import { getUserId } from "src/features/user/userSlice";
-import { useCreatePostMutation } from "../services/createPostService";
+import { useCreatePostMutation } from "src/api";
 import useNotification from "src/features/notifications/useNotification";
 
 function CreatePostForm() {
