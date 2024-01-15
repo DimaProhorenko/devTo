@@ -1,8 +1,7 @@
 import { Form } from "src/modules/common/components";
 import { object } from "yup";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import toast from "react-hot-toast/headless";
+
+import useMutationWithRedirect from "src/hooks/useMutationWithRedirect";
 
 import {
   validateEmail,
@@ -10,22 +9,14 @@ import {
   validateUsername,
 } from "src/helpers/validateInputs";
 import { useSignUpMutation } from "../services/authServices";
-import { setUser } from "src/features/user/userSlice";
 import { HOME } from "src/constants/routes";
-import { useEffect } from "react";
-import useNotification from "src/features/notifications/useNotification";
 
 function SignupForm() {
-  const [signUp, { isLoading, isError, error }] = useSignUpMutation();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { showError, showSuccess } = useNotification();
-
-  useEffect(() => {
-    if (isError) {
-      showError(error);
-    }
-  }, [isError, error, showError]);
+  const [signUp, { isLoading }] = useMutationWithRedirect(
+    useSignUpMutation,
+    "Signed up",
+    HOME,
+  );
 
   return (
     <Form
@@ -40,14 +31,7 @@ function SignupForm() {
         ...validateUsername,
       })}
       onSubmit={async ({ email, password, username }) => {
-        const { data } = await signUp({ email, password, username });
-        console.log(isError, data);
-        if (!isLoading && !isError && data) {
-          const { user, session } = data;
-          dispatch(setUser({ user, session }));
-          showSuccess("Signed up");
-          navigate(HOME);
-        }
+        const res = await signUp({ email, password, username });
       }}
     >
       <Form.Field label="Username" type="text" name="username" id="username" />
