@@ -7,22 +7,21 @@ import { useLoginMutation } from "../services/authServices";
 import { HOME } from "src/constants/routes";
 import { useEffect } from "react";
 import useNotification from "src/features/notifications/useNotification";
+import useMutationWithRedirect from "src/hooks/useMutationWithRedirect";
 
 function LoginForm() {
-  const [login, { isLoading, isError, error }] = useLoginMutation();
-  const navigate = useNavigate();
-  const { showError, showSuccess } = useNotification();
-
-  useEffect(() => {
-    if (isError) {
-      showError(error);
-    }
-  }, [error, isError, showError]);
+  // const [login, { isLoading, isUninitialized, isError, error }] =
+  //   useLoginMutation();
+  const [login, { isLoading }] = useMutationWithRedirect(
+    useLoginMutation,
+    "Logged in",
+    HOME,
+  );
+  // const navigate = useNavigate();
+  // const { showError, showSuccess } = useNotification();
 
   return (
     <>
-      {isError && <p>{error}</p>}
-
       <Form
         initialsValues={{
           email: "",
@@ -30,13 +29,8 @@ function LoginForm() {
         }}
         validationSchema={object({ ...validateEmail, ...validatePassword })}
         onSubmit={async ({ email, password }) => {
-          const { data } = await login({ email, password });
-          if (!isLoading && !isError) {
-            // const { session, user } = data;
-            showSuccess("Logged in");
-            // dispatch(setUser({ session, user }));
-            navigate(HOME);
-          }
+          const res = await login({ email, password });
+          console.log(res);
         }}
       >
         <Form.Field label="Email" type="email" name="email" id="email" />

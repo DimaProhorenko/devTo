@@ -41,6 +41,7 @@ function SignupForm() {
       })}
       onSubmit={async ({ email, password, username }) => {
         const { data } = await signUp({ email, password, username });
+        console.log(isError, data);
         if (!isLoading && !isError && data) {
           const { user, session } = data;
           dispatch(setUser({ user, session }));

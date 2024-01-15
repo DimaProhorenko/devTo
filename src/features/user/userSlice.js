@@ -19,4 +19,6 @@ export const { setUser } = userSlice.actions;
 
 export const getUser = (state) => state.user.user;
 
+export const getUserId = (state) => state.user.user.id;
+
 export default userSlice.reducer;

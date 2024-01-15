@@ -31,6 +31,7 @@ export const authApi = createApi({
             email,
             password,
           });
+          console.log(res);
           if (res.error) {
             throw new Error(res.error.message);
           }
@@ -43,10 +44,11 @@ export const authApi = createApi({
     signOut: builder.mutation({
       queryFn: async () => {
         try {
-          const { err } = await supabase.auth.signOut();
-          if (err) {
-            throw new Error(err.message);
+          const res = await supabase.auth.signOut();
+          if (res.error) {
+            throw new Error(res.error.message);
           }
+          return res;
         } catch (err) {
           return { error: err.message };
         }

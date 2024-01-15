@@ -1,23 +1,19 @@
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import { object } from "yup";
 
 import { Form } from "src/modules/common/components";
 import { validatePostTitle } from "src/helpers/validateInputs";
 import Editor from "src/modules/editor/components/Editor";
-import supabase from "src/client";
+import { getUserId } from "src/features/user/userSlice";
+import { useCreatePostMutation } from "../services/createPostService";
+import useNotification from "src/features/notifications/useNotification";
 
 function CreatePostForm() {
+  const [createPost, { isLoading, isError, error }] = useCreatePostMutation();
+  const { showError, showSuccess } = useNotification();
   const [text, setText] = useState("");
-
-  const handleSavePost = async (title) => {
-    const res = await supabase.from("posts").insert([
-      {
-        authorId: 123456,
-        title,
-        body: text,
-      },
-    ]);
-  };
+  const authorId = useSelector(getUserId);
 
   return (
     <Form
@@ -25,8 +21,19 @@ function CreatePostForm() {
         title: "",
       }}
       validationSchema={object({ ...validatePostTitle })}
-      onSubmit={(values) => {
-        handleSavePost(values.title);
+      onSubmit={async ({ title }) => {
+        const data = await createPost({
+          authorId,
+          title,
+          body: text,
+        });
+        if (!isLoading && !isError) {
+          console.log("POST CREATED");
+          showSuccess("Post created");
+        }
+        if (!isLoading && isError) {
+          showError(error);
+        }
       }}
     >
       <Form.Group>
@@ -40,7 +47,7 @@ function CreatePostForm() {
       <Form.Group>
         <Editor cb={setText} />
       </Form.Group>
-      <Form.Submit>Publish</Form.Submit>
+      <Form.Submit isLoading={isLoading}>Publish</Form.Submit>
     </Form>
   );
 }
