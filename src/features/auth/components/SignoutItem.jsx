@@ -1,6 +1,6 @@
 import useMutationWithRedirect from "src/hooks/useMutationWithRedirect";
 
-import { useSignOutMutation } from "../services/authServices";
+import { useSignOutMutation } from "src/api";
 
 import { LoadingButton, Title } from "src/modules/common/components";
 import { HOME } from "src/constants/routes";

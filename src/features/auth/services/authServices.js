@@ -1,5 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import supabase from "src/client";
+import { addServiceResponseValidation } from "src/helpers/apiHelpers";
 
 export const authApi = createApi({
   endpoints: (builder) => ({
@@ -31,7 +32,6 @@ export const authApi = createApi({
             email,
             password,
           });
-          console.log(res);
           if (res.error) {
             throw new Error(res.error.message);
           }
@@ -59,3 +59,34 @@ export const authApi = createApi({
 
 export const { useSignUpMutation, useLoginMutation, useSignOutMutation } =
   authApi;
+
+export const signUp = async ({ email, password, username }) => {
+  return await addServiceResponseValidation(
+    supabase.auth.signUp.bind(supabase.auth),
+    {
+      email,
+      password,
+      options: {
+        data: {
+          username,
+        },
+      },
+    },
+  );
+};
+
+export const login = async ({ email, password }) => {
+  return await addServiceResponseValidation(
+    supabase.auth.signInWithPassword.bind(supabase.auth),
+    {
+      email,
+      password,
+    },
+  );
+};
+
+export const signOut = async () => {
+  return await addServiceResponseValidation(
+    supabase.auth.signOut.bind(supabase.auth),
+  );
+};

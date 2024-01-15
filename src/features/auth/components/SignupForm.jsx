@@ -8,7 +8,7 @@ import {
   validatePassword,
   validateUsername,
 } from "src/helpers/validateInputs";
-import { useSignUpMutation } from "../services/authServices";
+import { useSignUpMutation } from "src/api";
 import { HOME } from "src/constants/routes";
 
 function SignupForm() {
