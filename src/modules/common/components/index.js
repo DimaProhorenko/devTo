@@ -1,3 +1,4 @@
+export { default as Main } from "./Main";
 export { default as AppLayout } from "./AppLayout";
 export { default as Section } from "./Section";
 export { default as Container } from "./Container";

@@ -8,7 +8,7 @@ function Notifications() {
   return (
     <AnimatePresence>
       <div
-        className="fixed right-2 top-2 flex w-full max-w-52 flex-col gap-y-4"
+        className="fixed right-2 top-24 z-30 flex w-full max-w-52 flex-col gap-y-4"
         onMouseEnter={startPause}
         onMouseLeave={endPause}
       >
