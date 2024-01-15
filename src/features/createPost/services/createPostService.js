@@ -31,11 +31,15 @@ export const createPostApi = createApi({
 // export const { useCreatePostMutation } = createPostApi;
 
 export const createPost = async ({ authorId, title, body }) => {
-  return addServiceResponseValidation(supabase.from("posts").insert, [
-    {
-      authorId,
-      title,
-      body,
-    },
-  ]);
+  return await supabase.from("posts").insert([{ authorId, title, body }]);
+  // return await addServiceResponseValidation(
+  //   supabase.from("posts").insert.bind(supabase),
+  //   [
+  //     {
+  //       authorId,
+  //       title,
+  //       body,
+  //     },
+  //   ],
+  // );
 };

@@ -51,7 +51,6 @@ function AppLayout() {
         </>
       )}
       {!isScreenSmall && <HeaderDesktop />}
-      <Notifications />
       <main>
         <Outlet />
       </main>

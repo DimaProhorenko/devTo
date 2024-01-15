@@ -7,11 +7,13 @@ import { validatePostTitle } from "src/helpers/validateInputs";
 import Editor from "src/modules/editor/components/Editor";
 import { getUserId } from "src/features/user/userSlice";
 import { useCreatePostMutation } from "src/api";
-import useNotification from "src/features/notifications/useNotification";
+import useMutationWithRedirect from "src/hooks/useMutationWithRedirect";
 
 function CreatePostForm() {
-  const [createPost, { isLoading, isError, error }] = useCreatePostMutation();
-  const { showError, showSuccess } = useNotification();
+  const [createPost, { isLoading }] = useMutationWithRedirect(
+    useCreatePostMutation,
+    "Post created",
+  );
   const [text, setText] = useState("");
   const authorId = useSelector(getUserId);
 
@@ -27,13 +29,6 @@ function CreatePostForm() {
           title,
           body: text,
         });
-        if (!isLoading && !isError) {
-          console.log("POST CREATED");
-          showSuccess("Post created");
-        }
-        if (!isLoading && isError) {
-          showError(error);
-        }
       }}
     >
       <Form.Group>
