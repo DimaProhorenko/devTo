@@ -16,10 +16,23 @@ import { setUser } from "./features/user/userSlice";
 
 function App() {
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     const res = await supabase
+  //       .from("profiles")
+  //       .select("id, first_name, last_name, username")
+  //       .eq("id", "bd57cc48-8a7a-4b8e-b19b-c675265a7e28");
+  //     console.log(res);
+  //   };
+  //   getUser();
+  // }, []);
+
   useEffect(() => {
     const subscription = supabase.auth.onAuthStateChange((event, session) => {
       console.log(event, session);
       const user = session?.user || {};
+
       dispatch(setUser(user));
     });
 

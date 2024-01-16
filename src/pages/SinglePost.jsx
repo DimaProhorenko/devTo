@@ -1,4 +1,5 @@
 import PostContainer from "src/features/posts/components/PostContainer";
+import PostCreator from "src/features/posts/components/PostCreator";
 import { Main, Section } from "src/modules/common/components";
 
 function SinglePost() {
@@ -10,7 +11,7 @@ function SinglePost() {
           <PostContainer />
         </Main.Body>
         <Main.Sidebar>
-          <h1>Sidebar</h1>
+          <PostCreator />
         </Main.Sidebar>
       </Main>
     </Section>

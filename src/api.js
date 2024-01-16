@@ -4,6 +4,7 @@ import {
   createPost,
   fetchPostById,
 } from "./features/posts/services/postService";
+import { getUserById } from "./features/user/services/userServices";
 
 export const api = createApi({
   reducerPath: "api",
@@ -26,6 +27,11 @@ export const api = createApi({
     fetchPostById: builder.query({
       queryFn: fetchPostById,
     }),
+
+    // Users
+    getUserById: builder.query({
+      queryFn: getUserById,
+    }),
   }),
 });
 
@@ -35,4 +41,5 @@ export const {
   useSignOutMutation,
   useCreatePostMutation,
   useFetchPostByIdQuery,
+  useGetUserByIdQuery,
 } = api;

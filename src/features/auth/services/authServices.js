@@ -9,7 +9,11 @@ export const signUp = async ({ email, password, username }) => {
       password,
       options: {
         data: {
+          first_name: "Dima",
+          last_name: "Prokhorenko",
           username,
+          profile_image:
+            "https://cdn-icons-png.freepik.com/128/4140/4140048.png",
         },
       },
     },
@@ -30,4 +34,8 @@ export const signOut = async () => {
   return await addServiceResponseValidation(
     supabase.auth.signOut.bind(supabase.auth),
   );
+};
+
+export const fetchUserFromDB = async (uid) => {
+  return await supabase.from("users").select();
 };

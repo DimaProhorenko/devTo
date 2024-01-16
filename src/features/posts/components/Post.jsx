@@ -39,4 +39,24 @@ Post.Body.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
+Post.Author = function PostAuthor({ name, date, profileImageSrc }) {
+  return (
+    <div>
+      <div>
+        <img src={profileImageSrc} alt={name} />
+      </div>
+      <div>
+        <h4>{name}</h4>
+        <small>{date}</small>
+      </div>
+    </div>
+  );
+};
+
+Post.Author.propTypes = {
+  name: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  profileImageSrc: PropTypes.string.isRequired,
+};
+
 export default Post;
