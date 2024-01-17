@@ -1,9 +1,42 @@
-import { useGetUserByIdQuery } from "src/api";
+import PropTypes from "prop-types";
+import { renameUserFields } from "src/helpers/userUtils";
+import { isoIntoDate } from "src/helpers/utils";
+import { Button } from "src/modules/common/components";
 
-function PostCreator() {
-  const { data } = useGetUserByIdQuery("bd57cc48-8a7a-4b8e-b19b-c675265a7e28");
+import {
+  ProfileDetail,
+  ProfileHeader,
+  ProfileImage,
+  ProfileName,
+  ProfilePane,
+  ProfilePaneContent,
+} from "src/modules/profile/components";
 
-  // console.log(data);
-  return <div>PostCreator</div>;
+function PostCreator({ author }) {
+  const { firstName, lastName, profileImage, createdAt } =
+    renameUserFields(author);
+  return (
+    <ProfilePane>
+      <ProfilePaneContent>
+        <ProfileHeader>
+          <ProfileImage src={profileImage} alt={firstName} />
+          <div>
+            <ProfileName>
+              {firstName} {lastName}
+            </ProfileName>
+          </div>
+        </ProfileHeader>
+        <Button size="full" variant="primary-bg">
+          Follow
+        </Button>
+        <ProfileDetail title="Joined">{isoIntoDate(createdAt)}</ProfileDetail>
+      </ProfilePaneContent>
+    </ProfilePane>
+  );
 }
+
+PostCreator.propTypes = {
+  author: PropTypes.object.isRequired,
+};
+
 export default PostCreator;

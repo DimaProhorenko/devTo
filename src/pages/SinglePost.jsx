@@ -20,13 +20,16 @@ function SinglePost() {
       skip: isPostFetching,
     },
   );
-  // console.log(author);
-  // console.log(post);
+  console.log(author);
+  console.log(post);
 
   if (isPostFetching || isAuthorFetching) {
     return <h1>Loading...</h1>;
   }
 
+  return null;
+
+  // eslint-disable-next-line no-unreachable
   return (
     <Section>
       <Main>
@@ -35,7 +38,7 @@ function SinglePost() {
           <PostContainer post={post} author={author} />
         </Main.Body>
         <Main.Sidebar>
-          <PostCreator />
+          <PostCreator author={author} />
         </Main.Sidebar>
       </Main>
     </Section>

@@ -1,9 +1,14 @@
 import toast from "react-hot-toast/headless";
+import { Link } from "react-router-dom";
+import { useFetchPostsQuery } from "src/api";
+import { POST } from "src/constants/routes";
 import useNotification from "src/features/notifications/useNotification";
 import { Section } from "src/modules/common/components";
 
 function Home() {
   const { showSuccess } = useNotification();
+  const { data: posts, isFetching } = useFetchPostsQuery();
+  console.log(posts);
   return (
     <Section>
       <button
@@ -14,6 +19,12 @@ function Home() {
       >
         ADD TOAST
       </button>
+      {!isFetching &&
+        posts.map((post) => (
+          <div key={post.id}>
+            <Link to={`${POST}/${post.id}`}>{post.title}</Link>
+          </div>
+        ))}
     </Section>
   );
 }

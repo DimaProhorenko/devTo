@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 function ProfileImage({ src, alt }) {
   return (
-    <div className="max-w-10 overflow-hidden rounded-full">
+    <div className="max-w-10 overflow-hidden rounded-full drop-shadow-lg">
       <img src={src} alt={alt} />
     </div>
   );

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-stone-100;
+  }
+}
+
 @layer components {
   .spinner {
     border-radius: 50%;

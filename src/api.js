@@ -3,6 +3,7 @@ import { login, signOut, signUp } from "./features/auth/services/authServices";
 import {
   createPost,
   fetchPostById,
+  fetchPosts,
 } from "./features/posts/services/postService";
 import { getUserById } from "./features/user/services/userServices";
 
@@ -24,6 +25,9 @@ export const api = createApi({
     createPost: builder.mutation({
       queryFn: createPost,
     }),
+    fetchPosts: builder.query({
+      queryFn: fetchPosts,
+    }),
     fetchPostById: builder.query({
       queryFn: fetchPostById,
     }),
@@ -40,6 +44,7 @@ export const {
   useLoginMutation,
   useSignOutMutation,
   useCreatePostMutation,
+  useFetchPostsQuery,
   useFetchPostByIdQuery,
   useGetUserByIdQuery,
 } = api;

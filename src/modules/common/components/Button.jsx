@@ -35,6 +35,9 @@ function Button({
       "px-2 py-2": size === "square",
     },
     {
+      "w-full py-2": size === "full",
+    },
+    {
       [className]: className,
     },
   );
@@ -54,7 +57,7 @@ Button.propTypes = {
   children: PropTypes.any.isRequired,
   to: PropTypes.string,
   variant: PropTypes.oneOf(["primary", "primary-bg", "gray"]),
-  size: PropTypes.oneOf(["md", "square"]),
+  size: PropTypes.oneOf(["md", "square", "full"]),
   className: PropTypes.string,
   disabled: PropTypes.bool,
 };

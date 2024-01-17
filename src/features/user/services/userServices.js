@@ -4,7 +4,7 @@ export const getUserById = async (id) => {
   try {
     const { data, error } = await supabase
       .from("profiles")
-      .select("id, first_name, last_name, username, profile_image")
+      .select("id, first_name, last_name, username, profile_image, created_at")
       .eq("id", id);
     if (error) {
       throw new Error(error);

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function Card({ children, padding = true, className = "" }) {
   const classes = clsx(
-    "rounded-md border border-stone-300",
+    "rounded-md border border-stone-300 bg-white overflow-hidden",
     {
       "p-2": padding,
     },
