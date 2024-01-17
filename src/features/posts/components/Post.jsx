@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
-import { useGetUserByIdQuery } from "src/api";
 import { createMarkup, isoIntoDate } from "src/helpers/utils";
 
 import { Card } from "src/modules/common/components";
+import { ProfileImage, ProfileName } from "src/modules/profile/components/";
 
 function Post({ children }) {
-  return <Card className="space-y-4">{children}</Card>;
+  return (
+    <Card padding={false} className="space-y-4 p-6">
+      {children}
+    </Card>
+  );
 }
 
 Post.propTypes = {
@@ -47,14 +51,12 @@ Post.Author = function PostAuthor({ author, createdAt }) {
     profile_image: profileImage,
   } = author;
   return (
-    <div>
+    <div className="flex items-center gap-x-4">
+      <ProfileImage src={profileImage} alt={firstName} />
       <div>
-        <img src={profileImage} alt={firstName} />
-      </div>
-      <div>
-        <h4 className="text-md font-medium text-stone-800 md:text-lg lg:text-xl">
+        <ProfileName>
           {firstName} {lastName}
-        </h4>
+        </ProfileName>
         <small className="text-xs text-stone-600">
           Posted on {isoIntoDate(createdAt)}
         </small>
