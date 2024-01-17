@@ -27,7 +27,7 @@ function SinglePost() {
     return <h1>Loading...</h1>;
   }
 
-  return null;
+  // return null;
 
   // eslint-disable-next-line no-unreachable
   return (
