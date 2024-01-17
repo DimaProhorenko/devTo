@@ -13,7 +13,7 @@ export const signUp = async ({ email, password, username }) => {
           last_name: "Prokhorenko",
           username,
           profile_image:
-            "https://cdn-icons-png.freepik.com/128/4140/4140048.png",
+            "https://ihkxmdukjfxmkfnpvsba.supabase.co/storage/v1/object/public/profiles/default_profile.png",
         },
       },
     },

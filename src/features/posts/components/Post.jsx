@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import { createMarkup } from "src/helpers/utils";
+import { useGetUserByIdQuery } from "src/api";
+import { createMarkup, isoIntoDate } from "src/helpers/utils";
 
 import { Card } from "src/modules/common/components";
 
@@ -39,24 +40,32 @@ Post.Body.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-Post.Author = function PostAuthor({ name, date, profileImageSrc }) {
+Post.Author = function PostAuthor({ author, createdAt }) {
+  const {
+    first_name: firstName,
+    last_name: lastName,
+    profile_image: profileImage,
+  } = author;
   return (
     <div>
       <div>
-        <img src={profileImageSrc} alt={name} />
+        <img src={profileImage} alt={firstName} />
       </div>
       <div>
-        <h4>{name}</h4>
-        <small>{date}</small>
+        <h4 className="text-md font-medium text-stone-800 md:text-lg lg:text-xl">
+          {firstName} {lastName}
+        </h4>
+        <small className="text-xs text-stone-600">
+          Posted on {isoIntoDate(createdAt)}
+        </small>
       </div>
     </div>
   );
 };
 
 Post.Author.propTypes = {
-  name: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  profileImageSrc: PropTypes.string.isRequired,
+  author: PropTypes.object.isRequired,
+  createdAt: PropTypes.string.isRequired,
 };
 
 export default Post;

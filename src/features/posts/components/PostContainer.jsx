@@ -1,18 +1,22 @@
-import { useParams } from "react-router-dom";
-import { useFetchPostByIdQuery } from "src/api";
+import PropTypes from "prop-types";
 import Post from "./Post";
 
-function PostContainer() {
-  const { id } = useParams();
-  const { data, isLoading, isError, error } = useFetchPostByIdQuery(id);
-  const post = (data && data[0]) || null;
+function PostContainer({ post, author }) {
   if (!post) return null;
+  console.log(author);
   return (
     <Post>
+      <Post.Author author={author} createdAt={post.created_at} />
       <Post.Title>{post.title}</Post.Title>
       <Post.Tags>Tags</Post.Tags>
       <Post.Body>{post.body}</Post.Body>
     </Post>
   );
 }
+
+PostContainer.propTypes = {
+  post: PropTypes.object.isRequired,
+  author: PropTypes.object.isRequired,
+};
+
 export default PostContainer;
