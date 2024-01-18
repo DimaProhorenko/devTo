@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useFetchPostByIdQuery, useGetUserByIdQuery } from "src/api";
 import PostContainer from "src/features/posts/components/PostContainer";
 import PostCreator from "src/features/posts/components/PostCreator";
+import PostSkeleton from "src/features/posts/components/PostSkeleton";
 import { Main, Section } from "src/modules/common/components";
 
 function SinglePost() {
@@ -20,25 +21,19 @@ function SinglePost() {
       skip: isPostFetching,
     },
   );
-  console.log(author);
-  console.log(post);
+  const isFetching = isPostFetching || isAuthorFetching;
 
-  if (isPostFetching || isAuthorFetching) {
-    return <h1>Loading...</h1>;
-  }
-
-  // return null;
-
-  // eslint-disable-next-line no-unreachable
   return (
     <Section>
       <Main>
         <Main.SmallSide>Left side</Main.SmallSide>
         <Main.Body>
-          <PostContainer post={post} author={author} />
+          {isFetching && <PostSkeleton />}
+          {!isFetching && <PostContainer post={post} author={author} />}
         </Main.Body>
         <Main.Sidebar>
-          <PostCreator author={author} />
+          {isFetching && <h1>Skeleton</h1>}
+          {!isFetching && <PostCreator author={author} />}
         </Main.Sidebar>
       </Main>
     </Section>
