@@ -28,7 +28,7 @@ Post.Title = function PostTitle({ children, size = "2xl" }) {
 
 Post.Title.propTypes = {
   children: PropTypes.any.isRequired,
-  size: PropTypes.oneOf(["sm", "xl"]),
+  size: PropTypes.oneOf(["md", "lg", "xl", "2xl"]),
 };
 
 Post.Tags = function PostTags({ children }) {

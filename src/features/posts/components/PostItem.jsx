@@ -17,7 +17,7 @@ function PostItem({ post }) {
       <Post.Title size="md">
         <Link to={`${POST}/${id}`}>{title}</Link>
       </Post.Title>
-      <Post.Tags />
+      <Post.Tags>tags</Post.Tags>
     </Post>
   );
 }
