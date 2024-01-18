@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 function UsernameTag({ children }) {
-  return <small className="text-stone-600">@{children}</small>;
+  return <small className="text-[12px] text-stone-600">@{children}</small>;
 }
 
 UsernameTag.propTypes = {

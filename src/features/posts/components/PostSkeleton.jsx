@@ -10,7 +10,7 @@ function PostSkeleton() {
       <Post.Tags>
         <Skeleton />
       </Post.Tags>
-      <Post.Body>{<Skeleton count={15} />}</Post.Body>
+      <Skeleton count={15} />
     </Post>
   );
 }

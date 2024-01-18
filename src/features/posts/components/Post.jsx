@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import PropTypes from "prop-types";
 import { renameUserFields } from "src/helpers/userUtils";
 import { createMarkup, isoIntoDate } from "src/helpers/utils";
 
-import { Card } from "src/modules/common/components";
+import { Card, Title } from "src/modules/common/components";
 import {
   ProfileImage,
   ProfileName,
@@ -21,16 +22,13 @@ Post.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-Post.Title = function PostTitle({ children }) {
-  return (
-    <h2 className="text-4xl font-bold text-stone-800 md:text-5xl lg:text-6xl">
-      {children}
-    </h2>
-  );
+Post.Title = function PostTitle({ children, size = "2xl" }) {
+  return <Title size={size}>{children}</Title>;
 };
 
 Post.Title.propTypes = {
   children: PropTypes.any.isRequired,
+  size: PropTypes.oneOf(["sm", "xl"]),
 };
 
 Post.Tags = function PostTags({ children }) {
