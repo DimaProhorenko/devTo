@@ -9,8 +9,8 @@ export const signUp = async ({ email, password, username }) => {
       password,
       options: {
         data: {
-          first_name: "Dima",
-          last_name: "Prokhorenko",
+          first_name: null,
+          last_name: null,
           username,
           profile_image:
             "https://ihkxmdukjfxmkfnpvsba.supabase.co/storage/v1/object/public/profiles/default_profile.png",

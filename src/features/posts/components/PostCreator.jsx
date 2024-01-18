@@ -8,12 +8,13 @@ import {
   ProfileHeader,
   ProfileImage,
   ProfileName,
+  ProfileNameTag,
   ProfilePane,
   ProfilePaneContent,
 } from "src/modules/profile/components";
 
 function PostCreator({ author }) {
-  const { firstName, lastName, profileImage, createdAt } =
+  const { firstName, lastName, username, profileImage, createdAt } =
     renameUserFields(author);
   return (
     <ProfilePane>
@@ -21,9 +22,11 @@ function PostCreator({ author }) {
         <ProfileHeader>
           <ProfileImage src={profileImage} alt={firstName} />
           <div>
-            <ProfileName>
-              {firstName} {lastName}
-            </ProfileName>
+            <ProfileNameTag
+              firstName={firstName}
+              lastName={lastName}
+              username={username}
+            />
           </div>
         </ProfileHeader>
         <Button size="full" variant="primary-bg">

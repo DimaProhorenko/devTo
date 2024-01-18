@@ -6,6 +6,7 @@ export const renameUserFields = (user) => {
     last_name: lastName,
     profile_image: profileImage,
     created_at: createdAt,
+    ...rest
   } = user;
-  return { firstName, lastName, profileImage, createdAt };
+  return { firstName, lastName, profileImage, createdAt, ...rest };
 };

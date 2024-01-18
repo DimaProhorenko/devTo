@@ -9,8 +9,23 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
-      state.user = action.payload;
-      // state.session = action.payload.session;
+      if (!action.payload) {
+        state.user = {};
+      } else {
+        const {
+          id,
+          email,
+          user_metadata: { first_name, last_name, username, profile_image },
+        } = action.payload;
+        state.user = {
+          id,
+          email,
+          username,
+          first_name,
+          last_name,
+          profile_image,
+        };
+      }
     },
   },
 });

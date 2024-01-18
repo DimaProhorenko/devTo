@@ -15,6 +15,7 @@ import SearchBar from "src/modules/common/components/SearchBar";
 function HeaderDesktop() {
   const user = useSelector(getUser);
   const isUserSignedIn = isUser(user);
+  console.log(user);
 
   return (
     <Header>

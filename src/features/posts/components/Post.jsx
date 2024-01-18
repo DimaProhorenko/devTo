@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
+import { renameUserFields } from "src/helpers/userUtils";
 import { createMarkup, isoIntoDate } from "src/helpers/utils";
 
 import { Card } from "src/modules/common/components";
-import { ProfileImage, ProfileName } from "src/modules/profile/components/";
+import {
+  ProfileImage,
+  ProfileName,
+  ProfileNameTag,
+} from "src/modules/profile/components/";
 
 function Post({ children }) {
   return (
@@ -45,11 +50,7 @@ Post.Body.propTypes = {
 };
 
 Post.Author = function PostAuthor({ author, createdAt }) {
-  const {
-    first_name: firstName,
-    last_name: lastName,
-    profile_image: profileImage,
-  } = author;
+  const { firstName, lastName, profileImage } = renameUserFields(author);
   return (
     <div className="flex items-center gap-x-4">
       <ProfileImage src={profileImage} alt={firstName} />
