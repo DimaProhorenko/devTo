@@ -3,11 +3,20 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { AppLayout } from "./modules/common/components/";
-import { Home, Login, NewPost, Signup, Signout, SinglePost } from "./pages";
+import {
+  Home,
+  Login,
+  NewPost,
+  Signup,
+  Signout,
+  SinglePost,
+  Settings,
+} from "./pages";
 import {
   CREATE_POST,
   LOGIN,
   POST,
+  SETTINGS,
   SIGN_OUT,
   SIGN_UP,
 } from "./constants/routes";
@@ -40,6 +49,7 @@ function App() {
           <Route path={POST}>
             <Route path=":id" element={<SinglePost />} />
           </Route>
+          <Route path={SETTINGS} element={<Settings />} />
         </Route>
 
         <Route path={CREATE_POST} element={<NewPost />} />

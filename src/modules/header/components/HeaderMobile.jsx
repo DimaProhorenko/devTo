@@ -12,7 +12,6 @@ import ProfileDropdown from "src/modules/profile/components/ProfileDropdown";
 
 function HeaderMobile({ onOpenMenu }) {
   const user = useSelector(getUser);
-  console.log(user);
   return (
     <Header>
       <Header.Content>

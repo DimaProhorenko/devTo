@@ -1,5 +1,9 @@
 import { string } from "yup";
 
+export const validateStringMinLength = (minLength, msg) => {
+  return string().required("Field is required").min(minLength, msg);
+};
+
 export const validateEmail = {
   email: string().email("Email not valid").required("Field is required"),
 };
@@ -26,4 +30,18 @@ export const validatePostTitle = {
   title: string()
     .required("Field is required")
     .min(3, "Must be at least 3 chars long"),
+};
+
+export const validateFirstName = {
+  firstName: validateStringMinLength(3, "Min length 3 characters").matches(
+    /^[a-zA-Z]+$/,
+    "Only english letters are allowed",
+  ),
+};
+
+export const validateLastName = {
+  lastName: validateStringMinLength(3, "Min length 3 characters").matches(
+    /^[a-zA-Z]+$/,
+    "Only english letters are allowed",
+  ),
 };

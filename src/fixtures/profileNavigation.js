@@ -1,4 +1,9 @@
-import { CREATE_POST, DASHBOARD, SAVED_POSTS } from "src/constants/routes";
+import {
+  CREATE_POST,
+  DASHBOARD,
+  SAVED_POSTS,
+  SETTINGS,
+} from "src/constants/routes";
 
 export default [
   {
@@ -15,5 +20,10 @@ export default [
     id: 2,
     name: "saved posts",
     path: SAVED_POSTS,
+  },
+  {
+    id: 3,
+    name: "settings",
+    path: SETTINGS,
   },
 ];

@@ -7,3 +7,4 @@ export const SINGLE_POST = `${POST}:id`;
 export const CREATE_POST = `${POST}/new`;
 export const SAVED_POSTS = "/savedposts";
 export const DASHBOARD = "/dashboard";
+export const SETTINGS = "/settings";
