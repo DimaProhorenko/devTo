@@ -13,19 +13,19 @@ import {
 import SubmitBlock from "./SubmitBlock";
 import useMutationWithRedirect from "src/hooks/useMutationWithRedirect";
 import { useUpdateUserDataMutation } from "src/api";
+import supabase from "src/client";
 
 function SettingsContent() {
-  const { username, first_name, last_name } = useSelector(getUser);
+  const { id, username, first_name, last_name, profile_image } =
+    useSelector(getUser);
   const [updateUser] = useMutationWithRedirect(
     useUpdateUserDataMutation,
     "Profile updated",
   );
 
-  console.log(username, first_name, last_name);
-
   return (
     <div className="space-y-4">
-      {username && (
+      {username && profile_image && (
         <>
           <UserTag>{username}</UserTag>
           <Form
@@ -33,18 +33,18 @@ function SettingsContent() {
               firstName: first_name || "",
               lastName: last_name || "",
               username: username || "default",
+              file: null,
             }}
             validationSchema={object({
               ...validateFirstName,
               ...validateLastName,
               ...validateUsername,
             })}
-            onSubmit={(values) => {
-              console.log(values);
-              updateUser(values);
+            onSubmit={async ({ file, ...values }) => {
+              updateUser({ ...values, profileImageFile: file });
             }}
           >
-            <UserBlock username={username} />
+            <UserBlock profileImage={profile_image} />
             <SubmitBlock />
           </Form>
         </>

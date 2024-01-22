@@ -1,4 +1,5 @@
 import supabase from "src/client";
+import { getImageUrl, uploadImage } from "src/services";
 
 export const getUserById = async (id) => {
   try {
@@ -16,13 +17,30 @@ export const getUserById = async (id) => {
   }
 };
 
-export const updateUserData = async ({ firstName, lastName, username }) => {
+export const updateUserData = async (
+  { firstName, lastName, username, profileImageFile },
+  { getState },
+) => {
   try {
+    let imageUrl = getState().user.user.profile_image;
+    if (profileImageFile) {
+      const { data: profileImage } = await uploadImage(
+        profileImageFile,
+        `${username}/${profileImageFile.type.split("/")[1]}`,
+      );
+
+      const { data: profileUrl } = await getImageUrl(profileImage.path);
+      if (profileUrl) {
+        imageUrl = profileUrl.publicUrl;
+      }
+    }
+
     const { data, error } = await supabase.auth.updateUser({
       data: {
         first_name: firstName,
         last_name: lastName,
         username,
+        profile_image: imageUrl,
       },
     });
     if (error) {

@@ -2,7 +2,7 @@
 import { Formik, Form as FormikForm, useField } from "formik";
 import PropTypes from "prop-types";
 import { Spinner } from ".";
-import React from "react";
+import React, { useState } from "react";
 
 function Form({
   children,
@@ -16,6 +16,7 @@ function Form({
       initialValues={initialsValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      enableReinitialize={true}
     >
       {({ isValid, dirty }) => {
         return (
@@ -80,7 +81,40 @@ Form.Input = function FormInput({ ...props }) {
   );
 };
 
-Form.FileInput = function FormFileInput() {};
+Form.FileInput = function FormFileInput({ label, defaultPreview, ...props }) {
+  const [previewImg, setPreviewImg] = useState(defaultPreview);
+  const [_, meta, helpers] = useField("file");
+  return (
+    <div className="flex gap-x-4">
+      <div className="h-12 w-12 overflow-hidden rounded-full">
+        <img src={previewImg} />
+      </div>
+      <div className="flex-1">
+        <label htmlFor={props.name || props.id}>{label}</label>
+        <Form.InputM
+          type="file"
+          accept="image/png, image/svg, image/jpeg"
+          onChange={(e) => {
+            const file = e.currentTarget.files[0];
+            const url = URL.createObjectURL(file);
+            setPreviewImg(url);
+            helpers.setValue(e.currentTarget.files[0]);
+          }}
+        />
+        {/* <Form.Field
+          label={label}
+          type="file"
+          accepts="image/png, svg"
+          {...props}
+        /> */}
+      </div>
+    </div>
+  );
+};
+
+Form.FileInput.propTypes = {
+  label: PropTypes.string.isRequired,
+};
 
 Form.Error = function FormError({ children }) {
   return <small className="block text-sm text-red-500">{children}</small>;
