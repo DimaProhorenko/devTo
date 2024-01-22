@@ -115,11 +115,18 @@ Form.Group.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-Form.Submit = function FormSubmit({ children, isValid, dirty, isLoading }) {
+Form.Submit = function FormSubmit({
+  children,
+  isValid,
+  dirty,
+  isLoading,
+  className = "",
+}) {
+  console.log(isValid, dirty, isValid && dirty);
   return (
     <button
       type="submit"
-      className="flex cursor-pointer items-center gap-x-4 rounded-md bg-primary-500 px-4 py-2 font-medium text-white disabled:cursor-not-allowed disabled:opacity-30"
+      className={`flex cursor-pointer items-center justify-center gap-x-4 rounded-md bg-primary-500 px-4 py-2 font-medium text-white disabled:cursor-not-allowed disabled:opacity-30 ${className}`}
       disabled={!(isValid && dirty)}
     >
       {isLoading && <Spinner />}
@@ -133,6 +140,7 @@ Form.Submit.propTypes = {
   isValid: PropTypes.bool,
   dirty: PropTypes.bool,
   isLoading: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default Form;

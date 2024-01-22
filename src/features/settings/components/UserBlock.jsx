@@ -1,0 +1,29 @@
+import { object } from "yup";
+import PropTypes from "prop-types";
+
+import { Card, Form } from "src/modules/common/components";
+
+import SettingsTitle from "./SettingsTitle";
+
+function UserBlock({ username }) {
+  console.log(username);
+  return (
+    <Card className="space-y-4">
+      <SettingsTitle>User</SettingsTitle>
+      <Form.Field
+        label="First Name"
+        type="text"
+        name="firstName"
+        id="firstName"
+      />
+      <Form.Field label="Last Name" type="text" name="lastName" id="lastName" />
+      <Form.Field label="Username" type="text" name="username" id="username" />
+    </Card>
+  );
+}
+
+UserBlock.propTypes = {
+  username: PropTypes.string,
+};
+
+export default UserBlock;

@@ -5,7 +5,7 @@ function Card({ children, padding = true, className = "" }) {
   const classes = clsx(
     "rounded-md border border-stone-300 bg-white overflow-hidden",
     {
-      "p-2 md:p-3 lg:p-4": padding,
+      "p-4 md:p-3 lg:p-6": padding,
     },
     {
       [className]: className,

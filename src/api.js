@@ -5,7 +5,10 @@ import {
   fetchPostById,
   fetchPosts,
 } from "./features/posts/services/postService";
-import { getUserById } from "./features/user/services/userServices";
+import {
+  getUserById,
+  updateUserData,
+} from "./features/user/services/userServices";
 
 export const api = createApi({
   reducerPath: "api",
@@ -36,6 +39,9 @@ export const api = createApi({
     getUserById: builder.query({
       queryFn: getUserById,
     }),
+    updateUserData: builder.mutation({
+      queryFn: updateUserData,
+    }),
   }),
 });
 
@@ -47,4 +53,5 @@ export const {
   useFetchPostsQuery,
   useFetchPostByIdQuery,
   useGetUserByIdQuery,
+  useUpdateUserDataMutation,
 } = api;

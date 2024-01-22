@@ -1,7 +1,7 @@
 import { string } from "yup";
 
 export const validateStringMinLength = (minLength, msg) => {
-  return string().required("Field is required").min(minLength, msg);
+  return string().min(minLength, msg);
 };
 
 export const validateEmail = {
