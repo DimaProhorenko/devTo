@@ -22,6 +22,7 @@ export const userSlice = createSlice({
             profile_image,
             website_url,
             location,
+            bio,
             branding_color,
           },
         } = action.payload;
@@ -34,6 +35,7 @@ export const userSlice = createSlice({
           profile_image,
           website_url,
           location,
+          bio,
           branding_color,
         };
       }

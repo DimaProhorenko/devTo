@@ -26,6 +26,7 @@ function SettingsContent() {
     last_name,
     profile_image,
     website_url,
+    bio,
     location,
     branding_color,
   } = useSelector(getUser);
@@ -33,6 +34,8 @@ function SettingsContent() {
     useUpdateUserDataMutation,
     "Profile updated",
   );
+
+  console.log(bio);
 
   return (
     <div className="space-y-4">
@@ -47,7 +50,7 @@ function SettingsContent() {
               file: null,
               websiteUrl: website_url || "",
               location: location || "",
-              bio: "",
+              bio: bio || "",
               brandingColor: branding_color || "#000",
             }}
             validationSchema={object({
