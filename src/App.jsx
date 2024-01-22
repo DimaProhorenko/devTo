@@ -11,9 +11,11 @@ import {
   Signout,
   SinglePost,
   Settings,
+  Dashboard,
 } from "./pages";
 import {
   CREATE_POST,
+  DASHBOARD,
   LOGIN,
   POST,
   SETTINGS,
@@ -50,6 +52,7 @@ function App() {
             <Route path=":id" element={<SinglePost />} />
           </Route>
           <Route path={SETTINGS} element={<Settings />} />
+          <Route path={DASHBOARD} element={<Dashboard />} />
         </Route>
 
         <Route path={CREATE_POST} element={<NewPost />} />

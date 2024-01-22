@@ -1,11 +1,22 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 
-function Card({ children, padding = true, className = "" }) {
+function Card({
+  children,
+  padding = true,
+  overflow = "hidden",
+  className = "",
+}) {
   const classes = clsx(
-    "rounded-md border border-stone-300 bg-white overflow-hidden",
+    "rounded-md border border-stone-300 bg-white",
     {
       "p-4 md:p-3 lg:p-6": padding,
+    },
+    {
+      "overflow-hidden": overflow === "hidden",
+      "overflow-auto": overflow === "auto",
+      "overflow-scroll": overflow === "scroll",
+      "overflow-visible": overflow === "visible",
     },
     {
       [className]: className,
@@ -18,6 +29,7 @@ Card.propTypes = {
   children: PropTypes.any.isRequired,
   className: PropTypes.string,
   padding: PropTypes.bool,
+  overflow: PropTypes.oneOf(["hidden", "auto", "scroll", "visible"]),
 };
 
 Card.Header = function CardHeader({ children, className }) {

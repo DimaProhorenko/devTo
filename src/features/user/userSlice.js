@@ -49,4 +49,8 @@ export const getUser = (state) => state.user.user;
 
 export const getUserId = (state) => state.user.user.id;
 
+export const getUserBrandingColor = (state) => state.user.user.branding_color;
+
+export const getUserImage = (state) => state.user.user.profile_image;
+
 export default userSlice.reducer;

@@ -2,8 +2,7 @@ import PropTypes from "prop-types";
 import { Dropdown, LinkBlock } from "src/modules/common/components";
 import ProfileImage from "./ProfileImage";
 
-import profileIcon from "src/assets/icons/profile.png";
-import { HOME, SIGN_OUT } from "src/constants/routes";
+import { DASHBOARD, SIGN_OUT } from "src/constants/routes";
 import { ProfileNameTag, ProfileNav } from ".";
 
 function ProfileDropdown({ user }) {
@@ -20,7 +19,7 @@ function ProfileDropdown({ user }) {
       </Dropdown.Toggler>
       <Dropdown.Body>
         <Dropdown.Top>
-          <LinkBlock to={HOME}>
+          <LinkBlock to={DASHBOARD}>
             <ProfileNameTag
               firstName={firstName}
               lastName={lastName}
