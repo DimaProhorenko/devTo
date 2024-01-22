@@ -1,23 +1,32 @@
 import { useSelector } from "react-redux";
 import { object } from "yup";
 
-import { Form } from "src/modules/common/components";
+import { useUpdateUserDataMutation } from "src/api";
 import { getUser } from "src/features/user/userSlice";
+
+import { Form } from "src/modules/common/components";
 import UserTag from "./UserTag";
+import BasicsBlock from "./BasicsBlock";
 import UserBlock from "./UserBlock";
 import {
   validateFirstName,
   validateLastName,
   validateUsername,
+  validateUrl,
 } from "src/helpers/validateInputs";
 import SubmitBlock from "./SubmitBlock";
 import useMutationWithRedirect from "src/hooks/useMutationWithRedirect";
-import { useUpdateUserDataMutation } from "src/api";
-import supabase from "src/client";
 
 function SettingsContent() {
-  const { id, username, first_name, last_name, profile_image } =
-    useSelector(getUser);
+  const {
+    id,
+    username,
+    first_name,
+    last_name,
+    profile_image,
+    website_url,
+    location,
+  } = useSelector(getUser);
   const [updateUser] = useMutationWithRedirect(
     useUpdateUserDataMutation,
     "Profile updated",
@@ -32,19 +41,24 @@ function SettingsContent() {
             initialsValues={{
               firstName: first_name || "",
               lastName: last_name || "",
-              username: username || "default",
+              username: username || "",
               file: null,
+              websiteUrl: website_url || "",
+              location: location || "",
+              bio: "",
             }}
             validationSchema={object({
               ...validateFirstName,
               ...validateLastName,
               ...validateUsername,
+              websiteUrl: validateUrl,
             })}
             onSubmit={async ({ file, ...values }) => {
               updateUser({ ...values, profileImageFile: file });
             }}
           >
             <UserBlock profileImage={profile_image} />
+            <BasicsBlock />
             <SubmitBlock />
           </Form>
         </>

@@ -18,15 +18,28 @@ export const getUserById = async (id) => {
 };
 
 export const updateUserData = async (
-  { firstName, lastName, username, profileImageFile },
+  {
+    firstName,
+    lastName,
+    username,
+    profileImageFile,
+    websiteUrl,
+    location,
+    bio,
+  },
   { getState },
 ) => {
   try {
     let imageUrl = getState().user.user.profile_image;
+    const {
+      website_url: oldWebsiteUrl,
+      location: oldLocation,
+      bio: oldBio,
+    } = getState().user.user;
     if (profileImageFile) {
       const { data: profileImage } = await uploadImage(
         profileImageFile,
-        `${username}/${profileImageFile.type.split("/")[1]}`,
+        `${username}/profile.${profileImageFile.type.split("/")[1]}`,
       );
 
       const { data: profileUrl } = await getImageUrl(profileImage.path);
@@ -41,6 +54,9 @@ export const updateUserData = async (
         last_name: lastName,
         username,
         profile_image: imageUrl,
+        website_url: websiteUrl || oldWebsiteUrl,
+        location: location || oldLocation,
+        bio: bio || oldBio,
       },
     });
     if (error) {

@@ -15,7 +15,14 @@ export const userSlice = createSlice({
         const {
           id,
           email,
-          user_metadata: { first_name, last_name, username, profile_image },
+          user_metadata: {
+            first_name,
+            last_name,
+            username,
+            profile_image,
+            website_url,
+            location,
+          },
         } = action.payload;
         state.user = {
           id,
@@ -24,6 +31,8 @@ export const userSlice = createSlice({
           first_name,
           last_name,
           profile_image,
+          website_url,
+          location,
         };
       }
     },

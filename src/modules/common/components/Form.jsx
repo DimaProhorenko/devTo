@@ -46,7 +46,7 @@ Form.Label = function FormLabel({ children, htmlFor }) {
   return (
     <label
       htmlFor={htmlFor}
-      className="block text-xl font-medium text-stone-800"
+      className="block text-lg font-medium text-stone-800 lg:text-xl"
     >
       {children}
     </label>
@@ -89,8 +89,8 @@ Form.FileInput = function FormFileInput({ label, defaultPreview, ...props }) {
       <div className="h-12 w-12 overflow-hidden rounded-full">
         <img src={previewImg} />
       </div>
-      <div className="flex-1">
-        <label htmlFor={props.name || props.id}>{label}</label>
+      <div className="flex-1 space-y-2">
+        <Form.Label htmlFor={props.name || props.id}>{label}</Form.Label>
         <Form.InputM
           type="file"
           accept="image/png, image/svg, image/jpeg"
@@ -113,6 +113,25 @@ Form.FileInput = function FormFileInput({ label, defaultPreview, ...props }) {
 };
 
 Form.FileInput.propTypes = {
+  label: PropTypes.string.isRequired,
+};
+
+Form.TextArea = function FormTextArea({ label, ...props }) {
+  const [field, meta] = useField(props);
+  return (
+    <div>
+      <Form.Label htmlFor={props.name || props.id}>{label}</Form.Label>
+      <textarea
+        className="block w-full rounded-md border border-stone-300 px-2 py-2 hover:border-primary-500  focus:outline-none focus:ring focus:ring-primary-500 focus:ring-offset-2"
+        {...field}
+        {...props}
+      />
+      {meta.touched && meta.error && <Form.Error>{meta.error}</Form.Error>}
+    </div>
+  );
+};
+
+Form.TextArea.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
