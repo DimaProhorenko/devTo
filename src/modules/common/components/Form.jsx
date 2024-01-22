@@ -124,6 +124,7 @@ Form.ColorInput = function FormColorInput({ label, ...props }) {
       <Form.Label htmlFor={props.name || props.id}>{label}</Form.Label>
       <Form.InputM
         type="color"
+        value={meta.value}
         onChange={(e) => {
           helpers.setValue(e.target.value);
         }}

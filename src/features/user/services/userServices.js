@@ -26,6 +26,7 @@ export const updateUserData = async (
     websiteUrl,
     location,
     bio,
+    brandingColor,
   },
   { getState },
 ) => {
@@ -35,6 +36,7 @@ export const updateUserData = async (
       website_url: oldWebsiteUrl,
       location: oldLocation,
       bio: oldBio,
+      brading_color: oldBradingColor,
     } = getState().user.user;
     if (profileImageFile) {
       const { data: profileImage } = await uploadImage(
@@ -57,6 +59,7 @@ export const updateUserData = async (
         website_url: websiteUrl || oldWebsiteUrl,
         location: location || oldLocation,
         bio: bio || oldBio,
+        branding_color: brandingColor || oldBradingColor,
       },
     });
     if (error) {

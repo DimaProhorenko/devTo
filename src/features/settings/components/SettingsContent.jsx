@@ -27,6 +27,7 @@ function SettingsContent() {
     profile_image,
     website_url,
     location,
+    branding_color,
   } = useSelector(getUser);
   const [updateUser] = useMutationWithRedirect(
     useUpdateUserDataMutation,
@@ -47,7 +48,7 @@ function SettingsContent() {
               websiteUrl: website_url || "",
               location: location || "",
               bio: "",
-              brandingColor: "",
+              brandingColor: branding_color || "#000",
             }}
             validationSchema={object({
               ...validateFirstName,

@@ -22,6 +22,7 @@ export const userSlice = createSlice({
             profile_image,
             website_url,
             location,
+            branding_color,
           },
         } = action.payload;
         state.user = {
@@ -33,6 +34,7 @@ export const userSlice = createSlice({
           profile_image,
           website_url,
           location,
+          branding_color,
         };
       }
     },
