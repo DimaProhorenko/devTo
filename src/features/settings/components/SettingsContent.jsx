@@ -16,6 +16,7 @@ import {
 } from "src/helpers/validateInputs";
 import SubmitBlock from "./SubmitBlock";
 import useMutationWithRedirect from "src/hooks/useMutationWithRedirect";
+import BrandingBlock from "./BrandingBlock";
 
 function SettingsContent() {
   const {
@@ -46,6 +47,7 @@ function SettingsContent() {
               websiteUrl: website_url || "",
               location: location || "",
               bio: "",
+              brandingColor: "",
             }}
             validationSchema={object({
               ...validateFirstName,
@@ -59,6 +61,7 @@ function SettingsContent() {
           >
             <UserBlock profileImage={profile_image} />
             <BasicsBlock />
+            <BrandingBlock />
             <SubmitBlock />
           </Form>
         </>

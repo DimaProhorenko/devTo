@@ -116,6 +116,22 @@ Form.FileInput.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
+Form.ColorInput = function FormColorInput({ label, ...props }) {
+  const [_, meta, helpers] = useField(props.name);
+
+  return (
+    <div>
+      <Form.Label htmlFor={props.name || props.id}>{label}</Form.Label>
+      <Form.InputM
+        type="color"
+        onChange={(e) => {
+          helpers.setValue(e.target.value);
+        }}
+      />
+    </div>
+  );
+};
+
 Form.TextArea = function FormTextArea({ label, ...props }) {
   const [field, meta] = useField(props);
   return (
