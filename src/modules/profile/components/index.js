@@ -8,3 +8,4 @@ export { default as ProfilePane } from "./ProfilePane";
 export { default as ProfilePaneContent } from "./ProfilePaneContent";
 export { default as ProfileHeader } from "./ProfileHeader";
 export { default as ProfileDetail } from "./ProfileDetail";
+export { default as ProfileBio } from "./ProfileBio";

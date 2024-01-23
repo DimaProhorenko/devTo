@@ -15,6 +15,7 @@ export const userSlice = createSlice({
         const {
           id,
           email,
+          created_at,
           user_metadata: {
             first_name,
             last_name,
@@ -37,6 +38,7 @@ export const userSlice = createSlice({
           location,
           bio,
           branding_color,
+          created_at,
         };
       }
     },
