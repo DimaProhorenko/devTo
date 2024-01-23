@@ -32,3 +32,18 @@ export const fetchPosts = async () => {
     return { error: err.message };
   }
 };
+
+export const fetchPostsByAuthorId = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from("posts")
+      .select()
+      .eq("authorId", id);
+    if (error) {
+      throw new Error(error);
+    }
+    return { data };
+  } catch (err) {
+    return { error: err.message };
+  }
+};

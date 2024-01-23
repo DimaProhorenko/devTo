@@ -1,7 +1,27 @@
+import { useSelector } from "react-redux";
+
+import { useFetchPostsByAuthorIdQuery } from "src/api";
 import DashboardTop from "src/features/dashboard/components/DashboardTop";
-import { Main } from "src/modules/common/components";
+import PostItemList from "src/features/posts/components/PostItemList";
+import { getUserId } from "src/features/user/userSlice";
+import { Container, Main, Title } from "src/modules/common/components";
 
 function Dashboard() {
-  return <DashboardTop />;
+  const id = useSelector(getUserId);
+  const { data: posts } = useFetchPostsByAuthorIdQuery(id);
+  return (
+    <>
+      <DashboardTop />
+      <Container mw="4xl">
+        <Main>
+          <Main.Sidebar>Sidebar</Main.Sidebar>
+          <Main.Body>
+            <Title>Your posts</Title>
+            {posts && <PostItemList posts={posts} />}
+          </Main.Body>
+        </Main>
+      </Container>
+    </>
+  );
 }
 export default Dashboard;

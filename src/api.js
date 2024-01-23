@@ -4,6 +4,7 @@ import {
   createPost,
   fetchPostById,
   fetchPosts,
+  fetchPostsByAuthorId,
 } from "./features/posts/services/postService";
 import {
   getUserById,
@@ -34,6 +35,9 @@ export const api = createApi({
     fetchPostById: builder.query({
       queryFn: fetchPostById,
     }),
+    fetchPostsByAuthorId: builder.query({
+      queryFn: fetchPostsByAuthorId,
+    }),
 
     // Users
     getUserById: builder.query({
@@ -52,6 +56,7 @@ export const {
   useCreatePostMutation,
   useFetchPostsQuery,
   useFetchPostByIdQuery,
+  useFetchPostsByAuthorIdQuery,
   useGetUserByIdQuery,
   useUpdateUserDataMutation,
 } = api;
