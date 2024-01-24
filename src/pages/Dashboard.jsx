@@ -10,7 +10,7 @@ function Dashboard() {
   const id = useSelector(getUserId);
   const { data: posts } = useFetchPostsByAuthorIdQuery(id);
   return (
-    <>
+    <section className="pb-4">
       <DashboardTop />
       <Container mw="4xl">
         <Main>
@@ -21,7 +21,7 @@ function Dashboard() {
           </Main.Body>
         </Main>
       </Container>
-    </>
+    </section>
   );
 }
 export default Dashboard;

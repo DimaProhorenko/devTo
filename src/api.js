@@ -13,6 +13,7 @@ import {
 
 export const api = createApi({
   reducerPath: "api",
+  tagTypes: ["Post"],
   endpoints: (builder) => ({
     // AUTH
     signUp: builder.mutation({
@@ -28,15 +29,18 @@ export const api = createApi({
     // Posts
     createPost: builder.mutation({
       queryFn: createPost,
+      invalidatesTags: ["Post"],
     }),
     fetchPosts: builder.query({
       queryFn: fetchPosts,
+      providesTags: ["Post"],
     }),
     fetchPostById: builder.query({
       queryFn: fetchPostById,
     }),
     fetchPostsByAuthorId: builder.query({
       queryFn: fetchPostsByAuthorId,
+      providesTags: ["Post"],
     }),
 
     // Users
