@@ -21,7 +21,7 @@ Main.Body.propTypes = {
 };
 
 Main.Sidebar = function MainSideBar({ children }) {
-  return <div className="lg:col-span-2">{children}</div>;
+  return <div className="space-y-4 lg:col-span-2">{children}</div>;
 };
 
 Main.Sidebar.propTypes = {

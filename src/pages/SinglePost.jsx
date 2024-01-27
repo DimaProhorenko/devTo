@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useFetchPostByIdQuery, useGetUserByIdQuery } from "src/api";
+import MoreFromPostCreator from "src/features/posts/components/MoreFromPostCreator";
 import PostContainer from "src/features/posts/components/PostContainer";
 import PostCreator from "src/features/posts/components/PostCreator";
 import PostCreatorSkeleton from "src/features/posts/components/PostCreatorSkeleton";
@@ -35,6 +36,7 @@ function SinglePost() {
         <Main.Sidebar>
           {isFetching && <PostCreatorSkeleton />}
           {!isFetching && <PostCreator author={author} />}
+          {!isFetching && <MoreFromPostCreator author={author} />}
         </Main.Sidebar>
       </Main>
     </Section>
