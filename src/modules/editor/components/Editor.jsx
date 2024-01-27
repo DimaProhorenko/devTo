@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 import { EditorContent, useEditor } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
+import Heading from "@tiptap/extension-heading";
 import Text from "@tiptap/extension-text";
 import Paragraph from "@tiptap/extension-paragraph";
 import Italic from "@tiptap/extension-italic";
@@ -16,6 +17,7 @@ import { Card } from "src/modules/common/components";
 
 const extensions = [
   Document,
+  Heading.configure({ levels: [1, 2, 3] }),
   Paragraph,
   Text,
   Italic,

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
-function EditorBtn({ children, ...restProps }) {
+function EditorBtn({ children, className = "", ...restProps }) {
   return (
-    <button type="button" {...restProps}>
+    <button type="button" className={className} {...restProps}>
       {children}
     </button>
   );
@@ -10,5 +10,6 @@ function EditorBtn({ children, ...restProps }) {
 
 EditorBtn.propTypes = {
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
 };
 export default EditorBtn;
