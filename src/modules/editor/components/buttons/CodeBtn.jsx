@@ -8,7 +8,7 @@ function CodeBtn({ editor }) {
     editor.chain().focus().toggleCode().run();
   };
   return (
-    <EditorBtn onClick={handleClick}>
+    <EditorBtn onClick={handleClick} isActive={editor.isActive("code")}>
       <Icon src={codeIcon} alt="toggle code" />
     </EditorBtn>
   );

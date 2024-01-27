@@ -1,6 +1,12 @@
 import PropTypes from "prop-types";
-import { BoldBtn, CodeBtn, ImageBtn, ItalicBtn, ListBtn } from "./buttons";
-import HeadingBtn from "./buttons/HeadingBtn";
+import {
+  BoldBtn,
+  CodeBtn,
+  ImageBtn,
+  ItalicBtn,
+  ListBtn,
+  HeadingBtn,
+} from "./buttons";
 
 function Toolbar({ editor }) {
   return (

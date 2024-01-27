@@ -8,7 +8,9 @@ function Home() {
     <Section>
       <Main>
         <Main.SmallSide>Side</Main.SmallSide>
-        <Main.Body>{!isFetching && <PostItemList posts={posts} />}</Main.Body>
+        <Main.Body>
+          {!isFetching && posts && <PostItemList posts={posts} />}
+        </Main.Body>
         <Main.Sidebar>Sidebar</Main.Sidebar>
       </Main>
     </Section>

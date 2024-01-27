@@ -10,7 +10,7 @@ function ItalicBtn({ editor }) {
     editor.chain().focus().toggleItalic().run();
   };
   return (
-    <EditorBtn onClick={handleClick}>
+    <EditorBtn onClick={handleClick} isActive={editor.isActive("italic")}>
       <Icon src={italicIcon} alt="Toggle italic" />
     </EditorBtn>
   );

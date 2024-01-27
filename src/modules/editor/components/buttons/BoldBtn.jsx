@@ -9,7 +9,7 @@ function BoldBtn({ editor }) {
     editor.chain().focus().toggleBold().run();
   };
   return (
-    <EditorBtn onClick={handleClick}>
+    <EditorBtn onClick={handleClick} isActive={editor.isActive("bold")}>
       <Icon src={boldIcon} alt="Toggle bold" />
     </EditorBtn>
   );

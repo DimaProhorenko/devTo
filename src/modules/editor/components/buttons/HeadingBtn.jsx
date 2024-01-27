@@ -31,7 +31,11 @@ function HeadingBtn({ editor }) {
   };
 
   return (
-    <EditorBtn className="flex items-end" onClick={clickHandler}>
+    <EditorBtn
+      className="flex items-end"
+      onClick={clickHandler}
+      isActive={editor.isActive("heading")}
+    >
       <Icon src={headingIcon} alt="toggle heading" />
       {(level && <span className="leading-none">{level}</span>) || ""}
     </EditorBtn>

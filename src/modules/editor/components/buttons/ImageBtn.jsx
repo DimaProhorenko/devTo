@@ -13,7 +13,7 @@ function ImageBtn({ editor }) {
     }
   }, [editor]);
   return (
-    <EditorBtn onClick={handleAddImage}>
+    <EditorBtn onClick={handleAddImage} isActive={editor.isActive("image")}>
       <Icon src={imageIcon} alt="Upload image" />
     </EditorBtn>
   );

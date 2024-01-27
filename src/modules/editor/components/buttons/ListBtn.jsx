@@ -8,7 +8,7 @@ function ListBtn({ editor }) {
     editor.chain().focus().toggleBulletList().run();
   };
   return (
-    <EditorBtn onClick={handleClick}>
+    <EditorBtn onClick={handleClick} isActive={editor.isActive("bulletList")}>
       <Icon src={listIcon} alt="Toggle list" />
     </EditorBtn>
   );
