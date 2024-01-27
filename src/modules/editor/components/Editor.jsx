@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import { EditorContent, useEditor } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
-import Heading from "@tiptap/extension-heading";
+// import Heading from "@tiptap/extension-heading";
 import Text from "@tiptap/extension-text";
 import Paragraph from "@tiptap/extension-paragraph";
 import Italic from "@tiptap/extension-italic";
@@ -11,13 +11,15 @@ import BulletList from "@tiptap/extension-bullet-list";
 import ListItem from "@tiptap/extension-list-item";
 import Code from "@tiptap/extension-code";
 import Image from "@tiptap/extension-image";
-
+import { Heading } from "../extentions/Heading";
 import Toolbar from "./Toolbar";
 import { Card } from "src/modules/common/components";
 
 const extensions = [
   Document,
-  Heading.configure({ levels: [1, 2, 3] }),
+  Heading.configure({
+    levels: [1, 2, 3],
+  }),
   Paragraph,
   Text,
   Italic,
@@ -32,6 +34,11 @@ const content = "";
 
 const Editor = ({ cb }) => {
   const editor = useEditor({
+    editorProps: {
+      attributes: {
+        class: "hello",
+      },
+    },
     extensions,
     content,
     onUpdate({ editor }) {
