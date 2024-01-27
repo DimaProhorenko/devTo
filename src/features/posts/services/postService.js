@@ -22,7 +22,10 @@ export const fetchPostById = async (id) => {
 
 export const fetchPosts = async () => {
   try {
-    const { data, error } = await supabase.from("posts").select();
+    const { data, error } = await supabase
+      .from("posts")
+      .select()
+      .order("created_at", { ascending: false });
 
     if (error) {
       throw new Error(error);

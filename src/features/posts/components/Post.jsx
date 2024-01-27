@@ -40,7 +40,12 @@ Post.Tags.propTypes = {
 };
 
 Post.Body = function PostBody({ children }) {
-  return <div dangerouslySetInnerHTML={createMarkup(children)} />;
+  return (
+    <div
+      dangerouslySetInnerHTML={createMarkup(children)}
+      className="prose md:prose-lg lg:prose-xl prose-code:bg-stone-200"
+    />
+  );
 };
 
 Post.Body.propTypes = {

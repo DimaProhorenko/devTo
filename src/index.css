@@ -7,6 +7,10 @@
     @apply bg-stone-100;
   }
 
+  a:not([class]) {
+    @apply transition-colors hover:text-primary-400;
+  }
+
   input[type="color"] {
     appearance: none;
     background-color: transparent;
@@ -32,21 +36,6 @@
   .tiptap {
     min-height: 250px;
     outline: none;
-  }
-
-  .tiptap ul {
-    list-style: circle;
-    padding: 0 20px;
-  }
-
-  /* 
-  .tiptap h1 {
-    @apply text-3xl font-bold text-stone-800;
-  } */
-
-  .h1-style {
-    color: red;
-    @apply text-3xl font-bold text-stone-800;
   }
 }
 
