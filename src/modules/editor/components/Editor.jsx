@@ -11,7 +11,7 @@ import BulletList from "@tiptap/extension-bullet-list";
 import ListItem from "@tiptap/extension-list-item";
 import Code from "@tiptap/extension-code";
 import Image from "@tiptap/extension-image";
-import { Heading } from "../extentions/Heading";
+import { Heading } from "../extensions/Heading";
 import Toolbar from "./Toolbar";
 import { Card } from "src/modules/common/components";
 
@@ -36,7 +36,7 @@ const Editor = ({ cb }) => {
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: "hello",
+        class: "prose md:prose-lg lg:prose-xl prose-code:bg-stone-200 ",
       },
     },
     extensions,

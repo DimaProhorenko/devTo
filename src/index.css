@@ -39,13 +39,13 @@
     padding: 0 20px;
   }
 
-  .tiptap code {
-    padding: 5px;
-    /* background:  */
-    @apply bg-stone-200;
-  }
-
+  /* 
   .tiptap h1 {
+    @apply text-3xl font-bold text-stone-800;
+  } */
+
+  .h1-style {
+    color: red;
     @apply text-3xl font-bold text-stone-800;
   }
 }
