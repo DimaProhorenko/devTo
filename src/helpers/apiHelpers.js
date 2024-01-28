@@ -14,18 +14,12 @@ export async function addServiceResponseValidation(cb, cbOptions) {
   }
 }
 
-export const getFromAndToRange = (start, step) => {
-  let from = start * step;
-  let to = from + step;
+export const getFromAndToRange = (page, size) => {
+  const limit = size ? +size : 3;
+  const from = page ? page * limit : 0;
+  const to = page ? from + size : size;
 
-  if (start > 0) {
-    from += 1;
-  }
-
-  return {
-    from,
-    to,
-  };
+  return { from, to: to - 1 };
 };
 
 export const getPostsFromAndTo = (start) => {

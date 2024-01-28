@@ -20,7 +20,23 @@ export const fetchPostById = async (id) => {
   }
 };
 
-export const fetchPosts = async ({ from, to }) => {
+export const fetchPosts = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("posts")
+      .select()
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      throw new Error(error);
+    }
+    return { data };
+  } catch (err) {
+    return { error: err.message };
+  }
+};
+
+export const fetchPostsWithPagination = async ({ from, to }) => {
   try {
     const { data, error } = await supabase
       .from("posts")

@@ -5,6 +5,7 @@ import {
   fetchPostById,
   fetchPosts,
   fetchPostsByAuthorId,
+  fetchPostsWithPagination,
 } from "./features/posts/services/postService";
 import {
   getUserById,
@@ -35,6 +36,10 @@ export const api = createApi({
       queryFn: fetchPosts,
       providesTags: ["Post"],
     }),
+    fetchPostsWithPagination: builder.query({
+      queryFn: fetchPostsWithPagination,
+      providesTags: ["Post"],
+    }),
     fetchPostById: builder.query({
       queryFn: fetchPostById,
     }),
@@ -60,6 +65,8 @@ export const {
   useCreatePostMutation,
   useFetchPostsQuery,
   useLazyFetchPostsQuery,
+  useFetchPostsWithPaginationQuery,
+  useLazyFetchPostsWithPaginationQuery,
   useFetchPostByIdQuery,
   useFetchPostsByAuthorIdQuery,
   useGetUserByIdQuery,

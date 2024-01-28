@@ -8,10 +8,8 @@ import store from "./store.js";
 import Notifications from "./features/notifications/Notifications.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Notifications />
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <Notifications />
+    <App />
+  </Provider>,
 );
