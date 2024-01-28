@@ -59,6 +59,7 @@ export const {
   useSignOutMutation,
   useCreatePostMutation,
   useFetchPostsQuery,
+  useLazyFetchPostsQuery,
   useFetchPostByIdQuery,
   useFetchPostsByAuthorIdQuery,
   useGetUserByIdQuery,

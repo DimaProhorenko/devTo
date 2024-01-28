@@ -20,11 +20,12 @@ export const fetchPostById = async (id) => {
   }
 };
 
-export const fetchPosts = async () => {
+export const fetchPosts = async ({ from, to }) => {
   try {
     const { data, error } = await supabase
       .from("posts")
       .select()
+      .range(from, to)
       .order("created_at", { ascending: false });
 
     if (error) {
