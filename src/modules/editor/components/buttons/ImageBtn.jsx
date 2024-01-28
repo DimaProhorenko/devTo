@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import EditorBtn from "../EditorBtn";
-import Icon from "../Icon";
+import Icon from "../../../common/components/Icon";
 import imageIcon from "src/assets/icons/editor/image.svg";
 import { useCallback } from "react";
 

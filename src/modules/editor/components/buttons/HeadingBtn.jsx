@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 import EditorBtn from "../EditorBtn";
-import Icon from "../Icon";
+import Icon from "../../../common/components/Icon";
 
 import headingIcon from "src/assets/icons/editor/heading.svg";
 
