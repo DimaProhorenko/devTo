@@ -37,6 +37,7 @@ export const fetchPosts = async () => {
 };
 
 export const fetchPostsWithPagination = async ({ from, to }) => {
+  console.log("fetching");
   try {
     const { data, error } = await supabase
       .from("posts")

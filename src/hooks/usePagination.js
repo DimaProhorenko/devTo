@@ -12,6 +12,6 @@ function usePagination(step, cb) {
     return f({ from, to });
   }, [f, from, to]);
 
-  return [trigger, options];
+  return [trigger, options, page];
 }
 export default usePagination;

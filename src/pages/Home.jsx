@@ -1,29 +1,28 @@
-import { useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useLazyFetchPostsWithPaginationQuery } from "src/api";
-import { POSTS_PER_PAGE } from "src/constants/db";
 import PostItemList from "src/features/posts/components/PostItemList";
-import usePagination from "src/hooks/usePagination";
-import { Button, Main, Section } from "src/modules/common/components";
+import useInfiniteScroll from "src/hooks/useInfiniteScroll";
+import { Main, Section } from "src/modules/common/components";
 
 function Home() {
-  // const { data: posts, isFetching } = useFetchPostsQuery();
-  const [fetchPosts, { data: posts, isFetching }] = usePagination(
-    POSTS_PER_PAGE,
+  const { items, hasMore, next } = useInfiniteScroll(
     useLazyFetchPostsWithPaginationQuery,
   );
-
-  useEffect(() => {
-    console.log("Effect");
-    fetchPosts();
-  }, []);
 
   return (
     <Section>
       <Main>
         <Main.SmallSide>Side</Main.SmallSide>
         <Main.Body>
-          {!isFetching && posts && <PostItemList posts={posts} />}
-          <Button onClick={fetchPosts}>Fetch more</Button>
+          {
+            <InfiniteScroll
+              dataLength={items.length}
+              hasMore={hasMore}
+              next={next}
+            >
+              <PostItemList posts={items} />
+            </InfiniteScroll>
+          }
         </Main.Body>
         <Main.Sidebar>Sidebar</Main.Sidebar>
       </Main>
