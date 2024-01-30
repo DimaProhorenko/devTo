@@ -15,5 +15,6 @@ export { default as SearchIcon } from "./SearchIcon";
 export { default as IconLink } from "./IconLink";
 export { default as LinkBlock } from "./LinkBlock";
 export { default as Title } from "./Title";
+export { default as Error } from "./Error";
 
 export { default as Spinner } from "./Spinner";

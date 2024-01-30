@@ -9,7 +9,9 @@ export const createPost = async ({ authorId, title, body }) => {
 
 export const fetchPostById = async (id) => {
   try {
-    const { data, error } = await supabase.from("posts").select().eq("id", id);
+    const res = await supabase.from("posts").select().eq("id", id);
+    const { data, error } = res;
+    console.log("API", res);
 
     if (error) {
       throw new Error(error);

@@ -16,7 +16,6 @@ const useMutationWithRedirect = (
       showError(res.error);
     } else {
       if (successMsg) {
-        console.log("Show success");
         showSuccess(successMsg);
       }
       if (navigateTo) {
