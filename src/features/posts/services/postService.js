@@ -1,4 +1,5 @@
 import supabase from "src/client";
+import { POSTS_PER_PAGE } from "src/constants/db";
 
 export const createPost = async ({ authorId, title, body }) => {
   return await supabase
@@ -61,7 +62,8 @@ export const fetchPostsByAuthorId = async (id) => {
     const { data, error } = await supabase
       .from("posts")
       .select()
-      .eq("authorId", id);
+      .eq("authorId", id)
+      .range(0, POSTS_PER_PAGE - 1);
     if (error) {
       throw new Error(error);
     }

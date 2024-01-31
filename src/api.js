@@ -69,6 +69,7 @@ export const {
   useLazyFetchPostsWithPaginationQuery,
   useFetchPostByIdQuery,
   useFetchPostsByAuthorIdQuery,
+  useLazyFetchPostsByAuthorIdQuery,
   useGetUserByIdQuery,
   useUpdateUserDataMutation,
 } = api;

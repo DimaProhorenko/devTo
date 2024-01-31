@@ -33,7 +33,7 @@ function SinglePost() {
 
   useEffect(() => {
     if (hasError) {
-      showError("Could not load the post");
+      showError(error || "Could not load the post");
     }
   }, [hasError, showError]);
 
